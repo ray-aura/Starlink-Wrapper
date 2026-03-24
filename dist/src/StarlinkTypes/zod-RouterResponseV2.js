@@ -1,0 +1,3 @@
+import { z } from "zod";
+export default z.object({ "routerId": z.string().describe("Router Id.").optional(), "nickname": z.string().nullable().describe("Nickname of the router.").optional(), "userTerminalId": z.string().describe("User terminal Id this router is bonded to.").optional(), "configId": z.string().nullable().describe("Router config this router is assigned to, or null if no config assigned.").optional(), "hardwareVersion": z.string().nullable().describe("Deprecated field. Value will always be null").optional(), "lastBonded": z.string().datetime({ offset: true }).nullable().describe("Deprecated field. Value will always be null").optional() }).strict();
+//# sourceMappingURL=zod-RouterResponseV2.js.map

@@ -1,0 +1,3 @@
+import { z } from "zod";
+export default z.object({ "startDate": z.string().datetime({ offset: true }).describe("Start date of the respective month.").optional(), "endDate": z.string().datetime({ offset: true }).describe("End date of the respective month.").optional(), "serviceLineUsage": z.array(z.object({ "serviceLineNumber": z.string().describe("Service line number.").optional(), "consumedAmountGB": z.number().describe("GB amount that the service line consumed from the block.").optional() }).strict()).describe("Montly usage breakdown by service lines.").optional() }).strict();
+//# sourceMappingURL=zod-DataBlockMonthlyPublicResponse.js.map

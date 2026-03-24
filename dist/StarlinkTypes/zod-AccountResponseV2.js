@@ -1,0 +1,3 @@
+import { z } from "zod";
+export default z.object({ "accountNumber": z.string().describe("The Account Number. Example: ACC-511274-31364-54").optional(), "regionCode": z.string().describe("The region code of the account. Example: US").optional(), "accountName": z.string().nullable().describe("The name of the account").optional(), "activeSuspensions": z.array(z.string()).nullable().describe("Active suspensions on account").optional() }).strict();
+//# sourceMappingURL=zod-AccountResponseV2.js.map

@@ -1,0 +1,3 @@
+import { z } from "zod";
+export default z.object({ "pageIndex": z.number().int().optional(), "limit": z.number().int().optional(), "isLastPage": z.boolean().optional(), "results": z.array(z.object({ "clientId": z.string().nullable().optional(), "sandboxId": z.number().int().optional(), "expiry": z.string().datetime({ offset: true }).optional() }).strict()).nullable().optional(), "totalCount": z.number().int().optional() }).strict();
+//# sourceMappingURL=zod-SandboxClientResponsePaginated.js.map

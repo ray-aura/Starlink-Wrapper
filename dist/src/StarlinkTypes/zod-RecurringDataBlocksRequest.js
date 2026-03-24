@@ -1,0 +1,3 @@
+import { z } from "zod";
+export default z.object({ "recurringDataBlocks": z.array(z.object({ "productId": z.string().min(1).describe("Product Id for data blocks"), "count": z.number().int().describe("Quantity of the specified data block to add") }).strict()).nullable().describe("Recurring data blocks to configure").optional(), "existingDataPoolId": z.string().nullable().describe("Not yet supported. Reserved for future enhancements.").optional() }).strict();
+//# sourceMappingURL=zod-RecurringDataBlocksRequest.js.map

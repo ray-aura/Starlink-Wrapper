@@ -1,0 +1,45 @@
+import { z } from "zod";
+declare const _default: z.ZodObject<{
+    recurringBlocksCurrentBillingCycle: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        productId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        startDate: z.ZodOptional<z.ZodString>;
+        expirationDate: z.ZodOptional<z.ZodString>;
+        count: z.ZodOptional<z.ZodNumber>;
+        dataAmount: z.ZodOptional<z.ZodNumber>;
+        dataUnitType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strict>>>>;
+    recurringBlocksNextBillingCycle: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        productId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        startDate: z.ZodOptional<z.ZodString>;
+        expirationDate: z.ZodOptional<z.ZodString>;
+        count: z.ZodOptional<z.ZodNumber>;
+        dataAmount: z.ZodOptional<z.ZodNumber>;
+        dataUnitType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strict>>>>;
+    delayedProductRecurringBlocksNextCycle: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        productId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        startDate: z.ZodOptional<z.ZodString>;
+        expirationDate: z.ZodOptional<z.ZodString>;
+        count: z.ZodOptional<z.ZodNumber>;
+        dataAmount: z.ZodOptional<z.ZodNumber>;
+        dataUnitType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strict>>>>;
+    topUpBlocksOptInPurchase: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        productId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        startDate: z.ZodOptional<z.ZodString>;
+        expirationDate: z.ZodOptional<z.ZodString>;
+        count: z.ZodOptional<z.ZodNumber>;
+        dataAmount: z.ZodOptional<z.ZodNumber>;
+        dataUnitType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strict>>>>;
+    topUpBlocksOneTimePurchase: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        productId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        startDate: z.ZodOptional<z.ZodString>;
+        expirationDate: z.ZodOptional<z.ZodString>;
+        count: z.ZodOptional<z.ZodNumber>;
+        dataAmount: z.ZodOptional<z.ZodNumber>;
+        dataUnitType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strict>>>>;
+}, z.core.$strict>;
+export default _default;
+//# sourceMappingURL=zod-ServiceLineDataBlocksSummaryResponse.d.ts.map

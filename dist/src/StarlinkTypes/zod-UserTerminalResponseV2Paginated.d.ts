@@ -1,0 +1,29 @@
+import { z } from "zod";
+declare const _default: z.ZodObject<{
+    pageIndex: z.ZodOptional<z.ZodNumber>;
+    limit: z.ZodOptional<z.ZodNumber>;
+    isLastPage: z.ZodOptional<z.ZodBoolean>;
+    results: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        userTerminalId: z.ZodOptional<z.ZodString>;
+        nickname: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        kitSerialNumber: z.ZodOptional<z.ZodString>;
+        dishSerialNumber: z.ZodOptional<z.ZodString>;
+        serviceLineNumber: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        l2VpnCircuits: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            circuitId: z.ZodOptional<z.ZodString>;
+            customerVlans: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
+            serviceVlan: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        }, z.core.$strict>>>;
+        routers: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            routerId: z.ZodOptional<z.ZodString>;
+            nickname: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            userTerminalId: z.ZodOptional<z.ZodString>;
+            configId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            hardwareVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            lastBonded: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strict>>>;
+    }, z.core.$strict>>>>;
+    totalCount: z.ZodOptional<z.ZodNumber>;
+}, z.core.$strict>;
+export default _default;
+//# sourceMappingURL=zod-UserTerminalResponseV2Paginated.d.ts.map

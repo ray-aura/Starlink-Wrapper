@@ -1,0 +1,3 @@
+import { z } from "zod";
+export default z.object({ "topUpProduct": z.object({ "productId": z.string().nullable().optional(), "price": z.number().optional(), "isoCurrencyCode": z.string().nullable().optional(), "dataAmount": z.number().optional(), "dataUnit": z.string().nullable().optional() }).strict().optional(), "dataBlockProducts": z.array(z.object({ "productId": z.string().nullable().optional(), "price": z.number().optional(), "isoCurrencyCode": z.string().nullable().optional(), "dataAmount": z.number().optional(), "dataUnit": z.string().nullable().optional() }).strict()).nullable().describe("The data block products that are available for this service plan.").optional() }).strict();
+//# sourceMappingURL=zod-DataProductsResponse.js.map

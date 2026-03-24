@@ -1,0 +1,3 @@
+import { z } from "zod";
+export default z.object({ "pageIndex": z.number().int().optional(), "limit": z.number().int().optional(), "isLastPage": z.boolean().optional(), "results": z.array(z.object({ "configId": z.string().describe("Config Id.").optional(), "nickname": z.string().describe("Nickname for this config. Must be less than 100 characters.").optional(), "routerConfigJson": z.string().describe("Config in JSON format.").optional() }).strict()).nullable().optional(), "totalCount": z.number().int().optional() }).strict();
+//# sourceMappingURL=zod-RouterConfigResponseV2Paginated.js.map

@@ -1,0 +1,3 @@
+import { z } from "zod";
+export default z.object({ "productReferenceId": z.string().describe("The unique product identifier").optional(), "periodStart": z.string().datetime({ offset: true }).describe("The timestamp of the start of the partial period").optional(), "periodEnd": z.string().datetime({ offset: true }).describe("The timestamp of the end of the partial period").optional() }).strict();
+//# sourceMappingURL=zod-PartialPeriodResponse.js.map

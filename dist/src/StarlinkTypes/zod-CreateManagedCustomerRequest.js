@@ -1,0 +1,3 @@
+import { z } from "zod";
+export default z.object({ "firstName": z.string().min(1).describe("First name."), "lastName": z.string().min(1).describe("Last name."), "email": z.string().min(1).describe("Email address."), "phone": z.string().min(1).describe("Phone number."), "locale": z.string().min(1).describe("ISO 639-1 language code."), "businessName": z.string().nullable().describe("Business name only required for enterprise customers.").optional() }).strict();
+//# sourceMappingURL=zod-CreateManagedCustomerRequest.js.map
