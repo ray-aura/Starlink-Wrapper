@@ -7,17 +7,21 @@
   ],
   "license": "ISC",
   "author": "Raymond Mugandiwa",
-  "main": "index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
+  "exports": "./dist/index.js",
   "scripts": {
+    "build": "tsc",
+    "lint": "echo \"Will implement later\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "ts-node": "^10.9.2",
     "zod": "^4.3.6"
   }
 }
