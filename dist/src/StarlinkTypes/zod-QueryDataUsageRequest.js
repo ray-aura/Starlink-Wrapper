@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "serviceLineNumbers": z.array(z.string()).nullable().describe("Service line numbers to filter by. Queries for all service lines on account if omitted").optional(), "previousBillingCycles": z.number().int().nullable().describe("Number of previous billing cycles to include in addition to the current one. Defaults to 1").optional(), "activeServiceLinesOnly": z.boolean().describe("Whether to filter by only active service lines. Defaults to true").optional(), "queryStartDate": z.string().datetime({ offset: true }).nullable().describe("Override the first cycle's start date with the provided query start date").optional() }).strict();
-//# sourceMappingURL=zod-QueryDataUsageRequest.js.map

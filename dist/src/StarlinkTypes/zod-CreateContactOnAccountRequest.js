@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "firstName": z.string().min(1).describe("Contact first name."), "lastName": z.string().min(1).describe("Contact last name."), "roles": z.array(z.string()).describe("Contact roles on account."), "email": z.string().min(1).describe("Contact email."), "phoneNumber": z.string().min(1).describe("Contact phone number."), "locale": z.string().min(1).describe("Contact locale.") }).strict();
-//# sourceMappingURL=zod-CreateContactOnAccountRequest.js.map

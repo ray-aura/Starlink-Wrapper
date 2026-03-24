@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "tailNumber": z.string().nullable().optional(), "seatCount": z.number().int().optional(), "airlineIataCode": z.string().nullable().optional(), "aircraftIataCode": z.string().nullable().optional(), "airlineIcaoCode": z.string().nullable().optional(), "aircraftIcaoCode": z.string().nullable().optional(), "stcNumber": z.string().nullable().optional() }).strict();
-//# sourceMappingURL=zod-AviationMetadataResponse.js.map

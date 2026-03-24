@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "pageIndex": z.number().int().optional(), "limit": z.number().int().optional(), "isLastPage": z.boolean().optional(), "results": z.array(z.object({ "subjectId": z.string().min(1).describe("Unique subject ID given to this user."), "email": z.string().min(1).describe("User email."), "roles": z.array(z.string()).describe("List of User roles which map to permissions on the specified account.") }).strict()).nullable().optional(), "totalCount": z.number().int().optional() }).strict();
-//# sourceMappingURL=zod-UserResponsePaginated.js.map

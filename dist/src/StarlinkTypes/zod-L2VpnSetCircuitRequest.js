@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "circuitId": z.string().min(1).describe("Starlink generated Id of L2VPN circuit."), "customerVlans": z.array(z.number().int()).describe("Customer VLANs are the inner tag and identify L2VPN customer traffic to and from a user terminal."), "serviceVlan": z.number().int().nullable().describe("Outer VLAN tag used for Q-in-Q and identifies a single ethernet virtual circuit (EVC) for a user terminal. Null or 0 if no service VLAN tag should be added.").optional() }).strict();
-//# sourceMappingURL=zod-L2VpnSetCircuitRequest.js.map

@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "productId": z.string().describe("Opt in product Id.").optional(), "activatedDate": z.string().datetime({ offset: true }).describe("Activation date.").optional(), "deactivatedDate": z.string().datetime({ offset: true }).nullable().describe("Deactivation date.").optional(), "isInOptInCoolDown": z.boolean().describe("Whether service line is in cool down period from recently changing opted in state").optional() }).strict();
-//# sourceMappingURL=zod-OptInResponse.js.map

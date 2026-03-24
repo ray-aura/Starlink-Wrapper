@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "clientId": z.string().min(1).describe("Identifier of the client to add or remove from a sandbox."), "sandboxId": z.number().int().describe("Identifier used to separate sandbox environments. Per-client sandboxing is shared within the same SandboxId."), "expiry": z.string().datetime({ offset: true }).describe("Expiry of the sandbox state as a UTC date time.") }).strict();
-//# sourceMappingURL=zod-UpdateBatchSandboxClientRequest.js.map

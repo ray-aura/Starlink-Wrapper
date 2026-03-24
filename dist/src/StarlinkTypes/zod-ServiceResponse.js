@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "errors": z.array(z.object({ "memberNames": z.array(z.string()).nullable().readonly().optional(), "errorMessage": z.string().nullable().optional() }).strict()).nullable().readonly().optional(), "warnings": z.array(z.object({ "memberNames": z.array(z.string()).nullable().readonly().optional(), "errorMessage": z.string().nullable().optional() }).strict()).nullable().readonly().optional(), "information": z.array(z.string()).nullable().readonly().optional(), "isValid": z.boolean().readonly().optional() }).strict();
-//# sourceMappingURL=zod-ServiceResponse.js.map

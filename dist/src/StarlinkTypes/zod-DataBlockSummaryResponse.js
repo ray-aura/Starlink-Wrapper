@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "productId": z.string().nullable().describe("The block's product id.").optional(), "startDate": z.string().datetime({ offset: true }).describe("The block's start date.").optional(), "expirationDate": z.string().datetime({ offset: true }).describe("The block's end date.").optional(), "count": z.number().int().describe("How many blocks of this type there are.").optional(), "dataAmount": z.number().describe("The data amount of each block.").optional(), "dataUnitType": z.string().nullable().describe("The unit that the data amount is in.").optional() }).strict();
-//# sourceMappingURL=zod-DataBlockSummaryResponse.js.map

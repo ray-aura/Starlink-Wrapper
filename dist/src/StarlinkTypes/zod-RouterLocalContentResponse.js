@@ -1,3 +1,0 @@
-import { z } from "zod";
-export default z.object({ "nickname": z.string().describe("Uploaded file name").optional(), "uploadDate": z.string().datetime({ offset: true }).describe("Upload timestamp").optional(), "fileContentId": z.string().describe("Id of uploaded local content file, used in router config HTTPS server").optional(), "fileContentHash": z.string().describe("MD5 hash of the uploaded file used to verify integrity when router downloads the file for hosting. Used in router config HTTPS server").optional() }).strict();
-//# sourceMappingURL=zod-RouterLocalContentResponse.js.map
