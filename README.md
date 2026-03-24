@@ -5,7 +5,7 @@ A typesafe TypeScript wrapper for the Starlink Enterprise API v2.
 ## Installation
 
 ```bash
-npm install starlink-wrapper
+npm install git+https://github.com/ray-aura/Starlink-Wrapper
 ```
 
 ## Quick Start

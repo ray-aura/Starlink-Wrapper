@@ -1,6 +1,6 @@
 {
   "name": "starlink-wrapper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A typesafe starlink v2 wrapper",
   "keywords": [
     "starlink"
@@ -17,7 +17,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "openapi-to-zod": "^0.0.9",
     "ts-node": "^10.9.2",
     "zod": "^4.3.6"
   }
