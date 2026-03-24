@@ -1,9 +1,137 @@
-import { z } from "zod";
-export declare const ValidationResultSchema: z.ZodObject<{
+import { z } from 'zod';
+
+interface StarlinkArgs {
+    ClientId: string;
+    AccountNumber: string;
+    ClientSecret: string;
+}
+interface StarlinkCredinitals {
+    ClientId: string;
+    ClientSecret: string;
+    AccessToken: string | null;
+    TimeCreated: number | null;
+}
+interface QueryDataUsageRequest {
+    serviceLineNumbers?: string[];
+    previousBillingCycles?: number;
+    activeServiceLinesOnly: boolean;
+    queryStartDate?: Date;
+}
+interface AddressCreateRequest {
+    addressLines: string[];
+    locality?: string;
+    administrativeArea?: string;
+    administrativeAreaCode: string;
+    region?: string;
+    regionCode: string;
+    postalCode?: string;
+    metadata?: string;
+    formattedAddress: string;
+    latitude: number;
+    longitude: number;
+}
+interface AddressUpdateRequest {
+    addressLines: string[];
+    locality?: string;
+    administrativeArea?: string;
+    administrativeAreaCode: string;
+    region?: string;
+    regionCode: string;
+    postalCode?: string;
+    metadata?: string;
+    formattedAddress: string;
+    latitude: number;
+    longitude: number;
+}
+interface CreateContactOnAccountRequest {
+    firstName: string;
+    lastName: string;
+    roles: string[];
+    email: string;
+    phoneNumber: string;
+    locale: string;
+}
+interface UpdateContactOnAccountRequest {
+    roles?: string[];
+    phoneNumber?: string;
+}
+interface CreateManagedCustomerRequest {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    locale: string;
+    businessName?: string;
+}
+interface RouterConfigRequest {
+    nickname?: string;
+    routerConfigJson: string;
+}
+interface UpdateDefaultConfigRequest {
+    configId: string;
+}
+interface AssignRoutersConfigRequest {
+    configId?: string;
+    routerIds: string[];
+}
+interface AssignUserTerminalsConfigRequest {
+    configId?: string;
+    userTerminalIds: string[];
+}
+interface TlsConfigCreateRequest {
+    certificateBase64Pem: string;
+    keyBase64Pem: string;
+}
+interface DeleteTlsConfigRequest {
+    certificateBase64Pem: string;
+}
+interface SandboxHeartbeatRequest {
+    healthy: boolean;
+}
+interface UpdateBatchSandboxClientRequest {
+    clientId: string;
+    sandboxId: number;
+    expiry: string;
+}
+interface DeviceIdRequest {
+    deviceId: string;
+}
+interface L2VpnSetCircuitRequest {
+    circuitId: string;
+    customerVlans: number[];
+    serviceVlan?: number;
+}
+interface ServiceLineCreateRequest {
+    addressReferenceId: string;
+    productReferenceId: string;
+    dataBlockProducts?: RecurringDataBlocksRequest;
+}
+interface ServiceLineUpdateNicknameRequest {
+    nickname: string;
+}
+interface UpdateServiceLineProductRequest {
+    productReferenceId: string;
+    recurringDataBlocks?: AddDataBlockRequest[];
+    existingDataPoolId?: string;
+    delayUpdate?: boolean;
+}
+interface ServiceLineSetPublicIpRequest {
+    publicIp: boolean;
+}
+interface AddDataBlockRequest {
+    productId: string;
+    count: number;
+}
+interface RecurringDataBlocksRequest {
+    recurringDataBlocks?: AddDataBlockRequest[];
+    existingDataPoolId?: string;
+}
+
+declare const ValidationResultSchema: z.ZodObject<{
     memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
     errorMessage: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const ServiceResponseSchema: z.ZodObject<{
+declare const ServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -15,13 +143,13 @@ export declare const ServiceResponseSchema: z.ZodObject<{
     information: z.ZodNullable<z.ZodArray<z.ZodString>>;
     isValid: z.ZodBoolean;
 }, z.core.$strip>;
-export declare const AccountResponseV2Schema: z.ZodObject<{
+declare const AccountResponseV2Schema: z.ZodObject<{
     accountNumber: z.ZodString;
     regionCode: z.ZodString;
     accountName: z.ZodNullable<z.ZodString>;
     activeSuspensions: z.ZodNullable<z.ZodArray<z.ZodString>>;
 }, z.core.$strip>;
-export declare const AccountResponseV2ServiceResponseSchema: z.ZodObject<{
+declare const AccountResponseV2ServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -39,7 +167,7 @@ export declare const AccountResponseV2ServiceResponseSchema: z.ZodObject<{
         activeSuspensions: z.ZodNullable<z.ZodArray<z.ZodString>>;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const AddressResponseSchema: z.ZodObject<{
+declare const AddressResponseSchema: z.ZodObject<{
     addressReferenceId: z.ZodString;
     addressLines: z.ZodArray<z.ZodString>;
     locality: z.ZodNullable<z.ZodString>;
@@ -53,7 +181,7 @@ export declare const AddressResponseSchema: z.ZodObject<{
     latitude: z.ZodNumber;
     longitude: z.ZodNumber;
 }, z.core.$strip>;
-export declare const AddressResponseServiceResponseSchema: z.ZodObject<{
+declare const AddressResponseServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -79,7 +207,7 @@ export declare const AddressResponseServiceResponseSchema: z.ZodObject<{
         longitude: z.ZodNumber;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const AddressResponsePaginatedSchema: z.ZodObject<{
+declare const AddressResponsePaginatedSchema: z.ZodObject<{
     pageIndex: z.ZodNumber;
     limit: z.ZodNumber;
     isLastPage: z.ZodBoolean;
@@ -99,7 +227,7 @@ export declare const AddressResponsePaginatedSchema: z.ZodObject<{
     }, z.core.$strip>>>;
     totalCount: z.ZodNumber;
 }, z.core.$strip>;
-export declare const AddressResponsePaginatedServiceResponseSchema: z.ZodObject<{
+declare const AddressResponsePaginatedServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -131,12 +259,12 @@ export declare const AddressResponsePaginatedServiceResponseSchema: z.ZodObject<
         totalCount: z.ZodNumber;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const UserResponseSchema: z.ZodObject<{
+declare const UserResponseSchema: z.ZodObject<{
     subjectId: z.ZodString;
     email: z.ZodString;
     roles: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
-export declare const UserResponseServiceResponseSchema: z.ZodObject<{
+declare const UserResponseServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -153,7 +281,7 @@ export declare const UserResponseServiceResponseSchema: z.ZodObject<{
         roles: z.ZodArray<z.ZodString>;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const UserResponsePaginatedSchema: z.ZodObject<{
+declare const UserResponsePaginatedSchema: z.ZodObject<{
     pageIndex: z.ZodNumber;
     limit: z.ZodNumber;
     isLastPage: z.ZodBoolean;
@@ -164,7 +292,7 @@ export declare const UserResponsePaginatedSchema: z.ZodObject<{
     }, z.core.$strip>>>;
     totalCount: z.ZodNumber;
 }, z.core.$strip>;
-export declare const UserResponsePaginatedServiceResponseSchema: z.ZodObject<{
+declare const UserResponsePaginatedServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -187,7 +315,7 @@ export declare const UserResponsePaginatedServiceResponseSchema: z.ZodObject<{
         totalCount: z.ZodNumber;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const UserLacksRequiredPermissionSchema: z.ZodObject<{
+declare const UserLacksRequiredPermissionSchema: z.ZodObject<{
     accountId: z.ZodNullable<z.ZodString>;
     requiredPermission: z.ZodObject<{
         featureAccess: z.ZodNumber;
@@ -196,7 +324,7 @@ export declare const UserLacksRequiredPermissionSchema: z.ZodObject<{
     featureAccessString: z.ZodNullable<z.ZodString>;
     permissionString: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const UserLacksRequiredPermissionServiceResponseSchema: z.ZodObject<{
+declare const UserLacksRequiredPermissionServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -217,14 +345,14 @@ export declare const UserLacksRequiredPermissionServiceResponseSchema: z.ZodObje
         permissionString: z.ZodNullable<z.ZodString>;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const DataProductResponseSchema: z.ZodObject<{
+declare const DataProductResponseSchema: z.ZodObject<{
     productId: z.ZodNullable<z.ZodString>;
     price: z.ZodNumber;
     isoCurrencyCode: z.ZodNullable<z.ZodString>;
     dataAmount: z.ZodNumber;
     dataUnit: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const DataProductsResponseSchema: z.ZodObject<{
+declare const DataProductsResponseSchema: z.ZodObject<{
     topUpProduct: z.ZodNullable<z.ZodObject<{
         productId: z.ZodNullable<z.ZodString>;
         price: z.ZodNumber;
@@ -240,7 +368,7 @@ export declare const DataProductsResponseSchema: z.ZodObject<{
         dataUnit: z.ZodNullable<z.ZodString>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
-export declare const SubscriptionProductResponseSchema: z.ZodObject<{
+declare const SubscriptionProductResponseSchema: z.ZodObject<{
     productReferenceId: z.ZodString;
     name: z.ZodString;
     price: z.ZodNumber;
@@ -264,7 +392,7 @@ export declare const SubscriptionProductResponseSchema: z.ZodObject<{
         }, z.core.$strip>>>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export declare const SubscriptionProductResponsePaginatedSchema: z.ZodObject<{
+declare const SubscriptionProductResponsePaginatedSchema: z.ZodObject<{
     pageIndex: z.ZodNumber;
     limit: z.ZodNumber;
     isLastPage: z.ZodBoolean;
@@ -294,7 +422,7 @@ export declare const SubscriptionProductResponsePaginatedSchema: z.ZodObject<{
     }, z.core.$strip>>>;
     totalCount: z.ZodNumber;
 }, z.core.$strip>;
-export declare const SubscriptionProductResponsePaginatedServiceResponseSchema: z.ZodObject<{
+declare const SubscriptionProductResponsePaginatedServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -336,12 +464,12 @@ export declare const SubscriptionProductResponsePaginatedServiceResponseSchema: 
         totalCount: z.ZodNumber;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const CreateManagedCustomerResponseSchema: z.ZodObject<{
+declare const CreateManagedCustomerResponseSchema: z.ZodObject<{
     accountNumber: z.ZodNullable<z.ZodString>;
     serviceAccountClientId: z.ZodNullable<z.ZodString>;
     serviceAccountSecret: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const CreateManagedCustomerResponseServiceResponseSchema: z.ZodObject<{
+declare const CreateManagedCustomerResponseServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -358,7 +486,7 @@ export declare const CreateManagedCustomerResponseServiceResponseSchema: z.ZodOb
         serviceAccountSecret: z.ZodNullable<z.ZodString>;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const RouterResponseV2Schema: z.ZodObject<{
+declare const RouterResponseV2Schema: z.ZodObject<{
     routerId: z.ZodString;
     nickname: z.ZodNullable<z.ZodString>;
     userTerminalId: z.ZodString;
@@ -366,7 +494,7 @@ export declare const RouterResponseV2Schema: z.ZodObject<{
     hardwareVersion: z.ZodNullable<z.ZodString>;
     lastBonded: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const RouterResponseV2ServiceResponseSchema: z.ZodObject<{
+declare const RouterResponseV2ServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -386,12 +514,12 @@ export declare const RouterResponseV2ServiceResponseSchema: z.ZodObject<{
         lastBonded: z.ZodNullable<z.ZodString>;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const RouterConfigResponseV2Schema: z.ZodObject<{
+declare const RouterConfigResponseV2Schema: z.ZodObject<{
     configId: z.ZodString;
     nickname: z.ZodString;
     routerConfigJson: z.ZodString;
 }, z.core.$strip>;
-export declare const RouterConfigResponseV2ServiceResponseSchema: z.ZodObject<{
+declare const RouterConfigResponseV2ServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -408,7 +536,7 @@ export declare const RouterConfigResponseV2ServiceResponseSchema: z.ZodObject<{
         routerConfigJson: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const RouterConfigResponseV2PaginatedSchema: z.ZodObject<{
+declare const RouterConfigResponseV2PaginatedSchema: z.ZodObject<{
     pageIndex: z.ZodNumber;
     limit: z.ZodNumber;
     isLastPage: z.ZodBoolean;
@@ -419,7 +547,7 @@ export declare const RouterConfigResponseV2PaginatedSchema: z.ZodObject<{
     }, z.core.$strip>>>;
     totalCount: z.ZodNumber;
 }, z.core.$strip>;
-export declare const RouterConfigResponseV2PaginatedServiceResponseSchema: z.ZodObject<{
+declare const RouterConfigResponseV2PaginatedServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -442,10 +570,10 @@ export declare const RouterConfigResponseV2PaginatedServiceResponseSchema: z.Zod
         totalCount: z.ZodNumber;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const DefaultRouterConfigResponseSchema: z.ZodObject<{
+declare const DefaultRouterConfigResponseSchema: z.ZodObject<{
     configId: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const DefaultRouterConfigResponseServiceResponseSchema: z.ZodObject<{
+declare const DefaultRouterConfigResponseServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -460,13 +588,13 @@ export declare const DefaultRouterConfigResponseServiceResponseSchema: z.ZodObje
         configId: z.ZodNullable<z.ZodString>;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const RouterLocalContentResponseSchema: z.ZodObject<{
+declare const RouterLocalContentResponseSchema: z.ZodObject<{
     nickname: z.ZodString;
     uploadDate: z.ZodString;
     fileContentId: z.ZodString;
     fileContentHash: z.ZodString;
 }, z.core.$strip>;
-export declare const RouterLocalContentResponseListServiceResponseSchema: z.ZodObject<{
+declare const RouterLocalContentResponseListServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -484,12 +612,12 @@ export declare const RouterLocalContentResponseListServiceResponseSchema: z.ZodO
         fileContentHash: z.ZodString;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
-export declare const AddRouterLocalContentResponseV2Schema: z.ZodObject<{
+declare const AddRouterLocalContentResponseV2Schema: z.ZodObject<{
     nickname: z.ZodString;
     fileContentId: z.ZodString;
     fileContentHash: z.ZodString;
 }, z.core.$strip>;
-export declare const AddRouterLocalContentResponseV2ServiceResponseSchema: z.ZodObject<{
+declare const AddRouterLocalContentResponseV2ServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -506,12 +634,12 @@ export declare const AddRouterLocalContentResponseV2ServiceResponseSchema: z.Zod
         fileContentHash: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const SandboxClientResponseSchema: z.ZodObject<{
+declare const SandboxClientResponseSchema: z.ZodObject<{
     clientId: z.ZodNullable<z.ZodString>;
     sandboxId: z.ZodNumber;
     expiry: z.ZodString;
 }, z.core.$strip>;
-export declare const SandboxClientResponsePaginatedSchema: z.ZodObject<{
+declare const SandboxClientResponsePaginatedSchema: z.ZodObject<{
     pageIndex: z.ZodNumber;
     limit: z.ZodNumber;
     isLastPage: z.ZodBoolean;
@@ -522,7 +650,7 @@ export declare const SandboxClientResponsePaginatedSchema: z.ZodObject<{
     }, z.core.$strip>>>;
     totalCount: z.ZodNumber;
 }, z.core.$strip>;
-export declare const SandboxClientResponsePaginatedServiceResponseSchema: z.ZodObject<{
+declare const SandboxClientResponsePaginatedServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -545,9 +673,9 @@ export declare const SandboxClientResponsePaginatedServiceResponseSchema: z.ZodO
         totalCount: z.ZodNumber;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const DataBucketTypeSchema: z.ZodNumber;
-export declare const DataOverageTypeSchema: z.ZodNumber;
-export declare const DataUsageOverageLineSchema: z.ZodObject<{
+declare const DataBucketTypeSchema: z.ZodNumber;
+declare const DataOverageTypeSchema: z.ZodNumber;
+declare const DataUsageOverageLineSchema: z.ZodObject<{
     restricted: z.ZodNumber;
     unrestricted: z.ZodNumber;
     pricePerGB: z.ZodNumber;
@@ -559,14 +687,14 @@ export declare const DataUsageOverageLineSchema: z.ZodObject<{
     dataOverageType: z.ZodNumber;
     activeFrom: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const DataUsageDailyV2Schema: z.ZodObject<{
+declare const DataUsageDailyV2Schema: z.ZodObject<{
     date: z.ZodString;
     priorityGB: z.ZodNumber;
     optInPriorityGB: z.ZodNumber;
     standardGB: z.ZodNumber;
     nonBillableGB: z.ZodNumber;
 }, z.core.$strip>;
-export declare const DataServicePlanSchema: z.ZodObject<{
+declare const DataServicePlanSchema: z.ZodObject<{
     isoCurrencyCode: z.ZodString;
     isMobilePlan: z.ZodBoolean;
     activeFrom: z.ZodNullable<z.ZodString>;
@@ -593,7 +721,7 @@ export declare const DataServicePlanSchema: z.ZodObject<{
     usageLimitGB: z.ZodNumber;
     dataCategoryMapping: z.ZodRecord<z.ZodString, z.ZodNumber>;
 }, z.core.$strip>;
-export declare const DataBlockSummaryResponseSchema: z.ZodObject<{
+declare const DataBlockSummaryResponseSchema: z.ZodObject<{
     productId: z.ZodNullable<z.ZodString>;
     startDate: z.ZodString;
     expirationDate: z.ZodString;
@@ -601,7 +729,7 @@ export declare const DataBlockSummaryResponseSchema: z.ZodObject<{
     dataAmount: z.ZodNumber;
     dataUnitType: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const ServiceLineDataBlocksSummaryResponseSchema: z.ZodObject<{
+declare const ServiceLineDataBlocksSummaryResponseSchema: z.ZodObject<{
     recurringBlocksCurrentBillingCycle: z.ZodNullable<z.ZodArray<z.ZodObject<{
         productId: z.ZodNullable<z.ZodString>;
         startDate: z.ZodString;
@@ -643,7 +771,7 @@ export declare const ServiceLineDataBlocksSummaryResponseSchema: z.ZodObject<{
         dataUnitType: z.ZodNullable<z.ZodString>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
-export declare const DataUsageBillingCycleV2Schema: z.ZodObject<{
+declare const DataUsageBillingCycleV2Schema: z.ZodObject<{
     startDate: z.ZodString;
     endDate: z.ZodString;
     dailyDataUsage: z.ZodNullable<z.ZodArray<z.ZodObject<{
@@ -671,13 +799,13 @@ export declare const DataUsageBillingCycleV2Schema: z.ZodObject<{
     totalOptInPriorityGB: z.ZodNumber;
     totalNonBillableGB: z.ZodNumber;
 }, z.core.$strip>;
-export declare const DataPoolUsagePublicResponseSchema: z.ZodObject<{
+declare const DataPoolUsagePublicResponseSchema: z.ZodObject<{
     accountNumber: z.ZodNullable<z.ZodString>;
     dataPoolId: z.ZodString;
     lastUpdated: z.ZodString;
     dataBlocks: z.ZodArray<z.ZodAny>;
 }, z.core.$strip>;
-export declare const ServiceLineDataUsageForBillingCyclesSchema: z.ZodObject<{
+declare const ServiceLineDataUsageForBillingCyclesSchema: z.ZodObject<{
     accountNumber: z.ZodNullable<z.ZodString>;
     serviceLineNumber: z.ZodNullable<z.ZodString>;
     startDate: z.ZodString;
@@ -739,7 +867,7 @@ export declare const ServiceLineDataUsageForBillingCyclesSchema: z.ZodObject<{
     }, z.core.$strip>>;
     lastUpdated: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const ServiceLineDataUsageForBillingCyclesPaginatedSchema: z.ZodObject<{
+declare const ServiceLineDataUsageForBillingCyclesPaginatedSchema: z.ZodObject<{
     pageIndex: z.ZodNumber;
     limit: z.ZodNumber;
     isLastPage: z.ZodBoolean;
@@ -807,7 +935,7 @@ export declare const ServiceLineDataUsageForBillingCyclesPaginatedSchema: z.ZodO
     }, z.core.$strip>>>;
     totalCount: z.ZodNumber;
 }, z.core.$strip>;
-export declare const ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema: z.ZodObject<{
+declare const ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -887,7 +1015,7 @@ export declare const ServiceLineDataUsageForBillingCyclesPaginatedServiceRespons
         totalCount: z.ZodNumber;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const AviationMetadataResponseSchema: z.ZodObject<{
+declare const AviationMetadataResponseSchema: z.ZodObject<{
     tailNumber: z.ZodNullable<z.ZodString>;
     seatCount: z.ZodNumber;
     airlineIataCode: z.ZodNullable<z.ZodString>;
@@ -896,11 +1024,11 @@ export declare const AviationMetadataResponseSchema: z.ZodObject<{
     aircraftIcaoCode: z.ZodNullable<z.ZodString>;
     stcNumber: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const L2VpnCircuitResponseSchema: z.ZodObject<{
+declare const L2VpnCircuitResponseSchema: z.ZodObject<{
     circuitId: z.ZodNullable<z.ZodString>;
     popName: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const L2VpnCircuitResponseListServiceResponseSchema: z.ZodObject<{
+declare const L2VpnCircuitResponseListServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -916,12 +1044,12 @@ export declare const L2VpnCircuitResponseListServiceResponseSchema: z.ZodObject<
         popName: z.ZodNullable<z.ZodString>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
-export declare const L2VpnCircuitDefinitionSchema: z.ZodObject<{
+declare const L2VpnCircuitDefinitionSchema: z.ZodObject<{
     circuitId: z.ZodString;
     customerVlans: z.ZodArray<z.ZodNumber>;
     serviceVlan: z.ZodNullable<z.ZodNumber>;
 }, z.core.$strip>;
-export declare const RouterResponseV2ForUserTerminalSchema: z.ZodObject<{
+declare const RouterResponseV2ForUserTerminalSchema: z.ZodObject<{
     routerId: z.ZodString;
     nickname: z.ZodNullable<z.ZodString>;
     userTerminalId: z.ZodString;
@@ -929,7 +1057,7 @@ export declare const RouterResponseV2ForUserTerminalSchema: z.ZodObject<{
     hardwareVersion: z.ZodNullable<z.ZodString>;
     lastBonded: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export declare const UserTerminalResponseV2Schema: z.ZodObject<{
+declare const UserTerminalResponseV2Schema: z.ZodObject<{
     userTerminalId: z.ZodString;
     nickname: z.ZodNullable<z.ZodString>;
     kitSerialNumber: z.ZodString;
@@ -949,7 +1077,7 @@ export declare const UserTerminalResponseV2Schema: z.ZodObject<{
         lastBonded: z.ZodNullable<z.ZodString>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export declare const UserTerminalResponseV2PaginatedSchema: z.ZodObject<{
+declare const UserTerminalResponseV2PaginatedSchema: z.ZodObject<{
     pageIndex: z.ZodNumber;
     limit: z.ZodNumber;
     isLastPage: z.ZodBoolean;
@@ -975,7 +1103,7 @@ export declare const UserTerminalResponseV2PaginatedSchema: z.ZodObject<{
     }, z.core.$strip>>>;
     totalCount: z.ZodNumber;
 }, z.core.$strip>;
-export declare const UserTerminalResponseV2PaginatedServiceResponseSchema: z.ZodObject<{
+declare const UserTerminalResponseV2PaginatedServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -1013,7 +1141,7 @@ export declare const UserTerminalResponseV2PaginatedServiceResponseSchema: z.Zod
         totalCount: z.ZodNumber;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const ServiceLineResponseSchema: z.ZodObject<{
+declare const ServiceLineResponseSchema: z.ZodObject<{
     addressReferenceId: z.ZodString;
     serviceLineNumber: z.ZodString;
     nickname: z.ZodNullable<z.ZodString>;
@@ -1076,7 +1204,7 @@ export declare const ServiceLineResponseSchema: z.ZodObject<{
         }, z.core.$strip>>>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export declare const ServiceLineResponseServiceResponseSchema: z.ZodObject<{
+declare const ServiceLineResponseServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -1151,7 +1279,7 @@ export declare const ServiceLineResponseServiceResponseSchema: z.ZodObject<{
         }, z.core.$strip>>;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const ServiceLineResponsePaginatedSchema: z.ZodObject<{
+declare const ServiceLineResponsePaginatedSchema: z.ZodObject<{
     pageIndex: z.ZodNumber;
     limit: z.ZodNumber;
     isLastPage: z.ZodBoolean;
@@ -1220,7 +1348,7 @@ export declare const ServiceLineResponsePaginatedSchema: z.ZodObject<{
     }, z.core.$strip>>>;
     totalCount: z.ZodNumber;
 }, z.core.$strip>;
-export declare const ServiceLineResponsePaginatedServiceResponseSchema: z.ZodObject<{
+declare const ServiceLineResponsePaginatedServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -1301,12 +1429,12 @@ export declare const ServiceLineResponsePaginatedServiceResponseSchema: z.ZodObj
         totalCount: z.ZodNumber;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export declare const PartialPeriodResponseSchema: z.ZodObject<{
+declare const PartialPeriodResponseSchema: z.ZodObject<{
     productReferenceId: z.ZodString;
     periodStart: z.ZodString;
     periodEnd: z.ZodString;
 }, z.core.$strip>;
-export declare const PartialPeriodResponseListServiceResponseSchema: z.ZodObject<{
+declare const PartialPeriodResponseListServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -1323,13 +1451,13 @@ export declare const PartialPeriodResponseListServiceResponseSchema: z.ZodObject
         periodEnd: z.ZodString;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
-export declare const OptInResponseSchema: z.ZodObject<{
+declare const OptInResponseSchema: z.ZodObject<{
     productId: z.ZodString;
     activatedDate: z.ZodString;
     deactivatedDate: z.ZodNullable<z.ZodString>;
     isInOptInCoolDown: z.ZodBoolean;
 }, z.core.$strip>;
-export declare const OptInResponseServiceResponseSchema: z.ZodObject<{
+declare const OptInResponseServiceResponseSchema: z.ZodObject<{
     errors: z.ZodNullable<z.ZodArray<z.ZodObject<{
         memberNames: z.ZodNullable<z.ZodArray<z.ZodString>>;
         errorMessage: z.ZodNullable<z.ZodString>;
@@ -1347,4 +1475,5 @@ export declare const OptInResponseServiceResponseSchema: z.ZodObject<{
         isInOptInCoolDown: z.ZodBoolean;
     }, z.core.$strip>;
 }, z.core.$strip>;
-//# sourceMappingURL=schemas.d.ts.map
+
+export { AccountResponseV2Schema, AccountResponseV2ServiceResponseSchema, type AddDataBlockRequest, AddRouterLocalContentResponseV2Schema, AddRouterLocalContentResponseV2ServiceResponseSchema, type AddressCreateRequest, AddressResponsePaginatedSchema, AddressResponsePaginatedServiceResponseSchema, AddressResponseSchema, AddressResponseServiceResponseSchema, type AddressUpdateRequest, type AssignRoutersConfigRequest, type AssignUserTerminalsConfigRequest, AviationMetadataResponseSchema, type CreateContactOnAccountRequest, type CreateManagedCustomerRequest, CreateManagedCustomerResponseSchema, CreateManagedCustomerResponseServiceResponseSchema, DataBlockSummaryResponseSchema, DataBucketTypeSchema, DataOverageTypeSchema, DataPoolUsagePublicResponseSchema, DataProductResponseSchema, DataProductsResponseSchema, DataServicePlanSchema, DataUsageBillingCycleV2Schema, DataUsageDailyV2Schema, DataUsageOverageLineSchema, DefaultRouterConfigResponseSchema, DefaultRouterConfigResponseServiceResponseSchema, type DeleteTlsConfigRequest, type DeviceIdRequest, L2VpnCircuitDefinitionSchema, L2VpnCircuitResponseListServiceResponseSchema, L2VpnCircuitResponseSchema, type L2VpnSetCircuitRequest, OptInResponseSchema, OptInResponseServiceResponseSchema, PartialPeriodResponseListServiceResponseSchema, PartialPeriodResponseSchema, type QueryDataUsageRequest, type RecurringDataBlocksRequest, type RouterConfigRequest, RouterConfigResponseV2PaginatedSchema, RouterConfigResponseV2PaginatedServiceResponseSchema, RouterConfigResponseV2Schema, RouterConfigResponseV2ServiceResponseSchema, RouterLocalContentResponseListServiceResponseSchema, RouterLocalContentResponseSchema, RouterResponseV2ForUserTerminalSchema, RouterResponseV2Schema, RouterResponseV2ServiceResponseSchema, SandboxClientResponsePaginatedSchema, SandboxClientResponsePaginatedServiceResponseSchema, SandboxClientResponseSchema, type SandboxHeartbeatRequest, type ServiceLineCreateRequest, ServiceLineDataBlocksSummaryResponseSchema, ServiceLineDataUsageForBillingCyclesPaginatedSchema, ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema, ServiceLineDataUsageForBillingCyclesSchema, ServiceLineResponsePaginatedSchema, ServiceLineResponsePaginatedServiceResponseSchema, ServiceLineResponseSchema, ServiceLineResponseServiceResponseSchema, type ServiceLineSetPublicIpRequest, type ServiceLineUpdateNicknameRequest, ServiceResponseSchema, type StarlinkArgs, type StarlinkCredinitals, SubscriptionProductResponsePaginatedSchema, SubscriptionProductResponsePaginatedServiceResponseSchema, SubscriptionProductResponseSchema, type TlsConfigCreateRequest, type UpdateBatchSandboxClientRequest, type UpdateContactOnAccountRequest, type UpdateDefaultConfigRequest, type UpdateServiceLineProductRequest, UserLacksRequiredPermissionSchema, UserLacksRequiredPermissionServiceResponseSchema, UserResponsePaginatedSchema, UserResponsePaginatedServiceResponseSchema, UserResponseSchema, UserResponseServiceResponseSchema, UserTerminalResponseV2PaginatedSchema, UserTerminalResponseV2PaginatedServiceResponseSchema, UserTerminalResponseV2Schema, ValidationResultSchema };

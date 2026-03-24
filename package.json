@@ -1,28 +1,43 @@
 {
   "name": "starlink-wrapper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A typesafe starlink v2 wrapper",
   "keywords": [
     "starlink"
   ],
   "license": "ISC",
   "author": "Raymond Mugandiwa",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "type": "module",
   "exports": {
     "types": "./dist/index.d.ts",
-    "import": "./dist/index.js"
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsup",
     "lint": "echo \"Will implement later\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "esm",
+      "cjs"
+    ],
+    "dts": true,
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true
+  },
   "devDependencies": {
     "@types/node": "^25.5.0",
-    "typescript": "^5.9.3",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "zod": "^4.3.6"
