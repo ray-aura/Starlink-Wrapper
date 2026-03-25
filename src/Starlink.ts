@@ -48,18 +48,26 @@ import {
   UserTerminalResponseV2PaginatedServiceResponseSchema,
 } from "./StarlinkTypes/schemas.js";
 
-class Starlink {
+export default class Starlink {
   private static instance: Starlink;
   protected starlinkConnect: Starlink_Connect;
 
-  private constructor(configurations: StarlinkArgs | [StarlinkArgs]) {
+  private constructor(configurations: StarlinkArgs | StarlinkArgs[]) {
     this.starlinkConnect = new Starlink_Connect(configurations);
   }
 
-  public static getInstance(
-    configurations: StarlinkArgs | [StarlinkArgs],
-  ): Starlink {
+  public static getInstance(): Starlink {
     if (!Starlink.instance) {
+      throw new Error("Starlink V2 API was not initialized");
+    }
+    return Starlink.instance;
+  }
+
+  public static init(configurations: StarlinkArgs | StarlinkArgs[]) {
+    if (!Starlink.instance) {
+      console.warn(
+        "Package is already initialized and this configuration will be ingnored",
+      );
       Starlink.instance = new Starlink(configurations);
     }
     return Starlink.instance;
@@ -834,5 +842,3 @@ class Starlink {
     return ServiceResponseSchema.parse(response);
   }
 }
-
-export default Starlink;

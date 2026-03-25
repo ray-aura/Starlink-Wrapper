@@ -5,7 +5,7 @@ class Starlink_Connect {
   // maps AccountNumber -> credentialsMap
   private credentialsMap: Map<string, StarlinkCredinitals>;
 
-  constructor(configurations: StarlinkArgs | [StarlinkArgs]) {
+  constructor(configurations: StarlinkArgs | StarlinkArgs[]) {
     this.credentialsMap = new Map();
 
     if (Array.isArray(configurations)) {
@@ -146,7 +146,7 @@ class Starlink_Connect {
 }
 
 /*
-Content-Typenst main = async () => {
+const main = async () => {
   let starlink = new Starlink_Connect({
     ClientId: "143447c1-6395-4cf8-876a-f0b59baffbce",
     AccountNumber: "ACC-7575740-96586-34",
