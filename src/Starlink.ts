@@ -64,13 +64,13 @@ export default class Starlink {
   }
 
   public static init(configurations: StarlinkArgs | StarlinkArgs[]) {
-    if (!Starlink.instance) {
+    if (Starlink.instance) {
       console.warn(
         "Package is already initialized and this configuration will be ingnored",
       );
-      Starlink.instance = new Starlink(configurations);
+      return Starlink.instance;
     }
-    return Starlink.instance;
+    return new Starlink(configurations);
   }
 
   public async getAccount(accountNumber: string) {
@@ -94,10 +94,10 @@ export default class Starlink {
     const url = "data-usage/query";
     const params = new URLSearchParams({ page: `${page}`, limit: `${limit}` });
 
-    console.log(`${url}?${params.toString()}`);
+    //console.log(`${url}?${params.toString()}`);
     const response = await this.starlinkConnect.Request(
       accountNumber,
-      `${url}${params.toString()}`,
+      `${url}?${params.toString()}`,
       "POST",
       queryDataUsageRequest,
     );

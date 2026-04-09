@@ -87,6 +87,7 @@ class Starlink_Connect {
     return {
       Accept: "application/json",
       Authorization: `Bearer ${configurations.AccessToken || token}`,
+      "Content-Type": "application/json",
     };
   }
 
@@ -106,7 +107,6 @@ class Starlink_Connect {
     body = {},
   ): Promise<any> {
     let full_url = `${this.baseURL}${url}`;
-    console.log(full_url);
     let headers = await this.getHeader(accountNumber);
 
     let options: any = {};
@@ -134,9 +134,10 @@ class Starlink_Connect {
         continue;
       }
 
-      if (response.status === 200) {
+      if (response.ok) {
         return await response.json();
       } else {
+        console.log(response);
         throw new Error(
           `Error when making request with status code : ${response.status}`,
         );

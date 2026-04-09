@@ -1,93 +1,3 @@
-"use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/index.ts
-var index_exports = {};
-__export(index_exports, {
-  AccountResponseV2Schema: () => AccountResponseV2Schema,
-  AccountResponseV2ServiceResponseSchema: () => AccountResponseV2ServiceResponseSchema,
-  AddRouterLocalContentResponseV2Schema: () => AddRouterLocalContentResponseV2Schema,
-  AddRouterLocalContentResponseV2ServiceResponseSchema: () => AddRouterLocalContentResponseV2ServiceResponseSchema,
-  AddressResponsePaginatedSchema: () => AddressResponsePaginatedSchema,
-  AddressResponsePaginatedServiceResponseSchema: () => AddressResponsePaginatedServiceResponseSchema,
-  AddressResponseSchema: () => AddressResponseSchema,
-  AddressResponseServiceResponseSchema: () => AddressResponseServiceResponseSchema,
-  AviationMetadataResponseSchema: () => AviationMetadataResponseSchema,
-  CreateManagedCustomerResponseSchema: () => CreateManagedCustomerResponseSchema,
-  CreateManagedCustomerResponseServiceResponseSchema: () => CreateManagedCustomerResponseServiceResponseSchema,
-  DataBlockSummaryResponseSchema: () => DataBlockSummaryResponseSchema,
-  DataBucketTypeSchema: () => DataBucketTypeSchema,
-  DataOverageTypeSchema: () => DataOverageTypeSchema,
-  DataPoolUsagePublicResponseSchema: () => DataPoolUsagePublicResponseSchema,
-  DataProductResponseSchema: () => DataProductResponseSchema,
-  DataProductsResponseSchema: () => DataProductsResponseSchema,
-  DataServicePlanSchema: () => DataServicePlanSchema,
-  DataUsageBillingCycleV2Schema: () => DataUsageBillingCycleV2Schema,
-  DataUsageDailyV2Schema: () => DataUsageDailyV2Schema,
-  DataUsageOverageLineSchema: () => DataUsageOverageLineSchema,
-  DefaultRouterConfigResponseSchema: () => DefaultRouterConfigResponseSchema,
-  DefaultRouterConfigResponseServiceResponseSchema: () => DefaultRouterConfigResponseServiceResponseSchema,
-  L2VpnCircuitDefinitionSchema: () => L2VpnCircuitDefinitionSchema,
-  L2VpnCircuitResponseListServiceResponseSchema: () => L2VpnCircuitResponseListServiceResponseSchema,
-  L2VpnCircuitResponseSchema: () => L2VpnCircuitResponseSchema,
-  OptInResponseSchema: () => OptInResponseSchema,
-  OptInResponseServiceResponseSchema: () => OptInResponseServiceResponseSchema,
-  PartialPeriodResponseListServiceResponseSchema: () => PartialPeriodResponseListServiceResponseSchema,
-  PartialPeriodResponseSchema: () => PartialPeriodResponseSchema,
-  RouterConfigResponseV2PaginatedSchema: () => RouterConfigResponseV2PaginatedSchema,
-  RouterConfigResponseV2PaginatedServiceResponseSchema: () => RouterConfigResponseV2PaginatedServiceResponseSchema,
-  RouterConfigResponseV2Schema: () => RouterConfigResponseV2Schema,
-  RouterConfigResponseV2ServiceResponseSchema: () => RouterConfigResponseV2ServiceResponseSchema,
-  RouterLocalContentResponseListServiceResponseSchema: () => RouterLocalContentResponseListServiceResponseSchema,
-  RouterLocalContentResponseSchema: () => RouterLocalContentResponseSchema,
-  RouterResponseV2ForUserTerminalSchema: () => RouterResponseV2ForUserTerminalSchema,
-  RouterResponseV2Schema: () => RouterResponseV2Schema,
-  RouterResponseV2ServiceResponseSchema: () => RouterResponseV2ServiceResponseSchema,
-  SandboxClientResponsePaginatedSchema: () => SandboxClientResponsePaginatedSchema,
-  SandboxClientResponsePaginatedServiceResponseSchema: () => SandboxClientResponsePaginatedServiceResponseSchema,
-  SandboxClientResponseSchema: () => SandboxClientResponseSchema,
-  ServiceLineDataBlocksSummaryResponseSchema: () => ServiceLineDataBlocksSummaryResponseSchema,
-  ServiceLineDataUsageForBillingCyclesPaginatedSchema: () => ServiceLineDataUsageForBillingCyclesPaginatedSchema,
-  ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema: () => ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema,
-  ServiceLineDataUsageForBillingCyclesSchema: () => ServiceLineDataUsageForBillingCyclesSchema,
-  ServiceLineResponsePaginatedSchema: () => ServiceLineResponsePaginatedSchema,
-  ServiceLineResponsePaginatedServiceResponseSchema: () => ServiceLineResponsePaginatedServiceResponseSchema,
-  ServiceLineResponseSchema: () => ServiceLineResponseSchema,
-  ServiceLineResponseServiceResponseSchema: () => ServiceLineResponseServiceResponseSchema,
-  ServiceResponseSchema: () => ServiceResponseSchema,
-  Starlink: () => Starlink,
-  SubscriptionProductResponsePaginatedSchema: () => SubscriptionProductResponsePaginatedSchema,
-  SubscriptionProductResponsePaginatedServiceResponseSchema: () => SubscriptionProductResponsePaginatedServiceResponseSchema,
-  SubscriptionProductResponseSchema: () => SubscriptionProductResponseSchema,
-  UserLacksRequiredPermissionSchema: () => UserLacksRequiredPermissionSchema,
-  UserLacksRequiredPermissionServiceResponseSchema: () => UserLacksRequiredPermissionServiceResponseSchema,
-  UserResponsePaginatedSchema: () => UserResponsePaginatedSchema,
-  UserResponsePaginatedServiceResponseSchema: () => UserResponsePaginatedServiceResponseSchema,
-  UserResponseSchema: () => UserResponseSchema,
-  UserResponseServiceResponseSchema: () => UserResponseServiceResponseSchema,
-  UserTerminalResponseV2PaginatedSchema: () => UserTerminalResponseV2PaginatedSchema,
-  UserTerminalResponseV2PaginatedServiceResponseSchema: () => UserTerminalResponseV2PaginatedServiceResponseSchema,
-  UserTerminalResponseV2Schema: () => UserTerminalResponseV2Schema,
-  ValidationResultSchema: () => ValidationResultSchema
-});
-module.exports = __toCommonJS(index_exports);
-
 // src/starlink_connect.ts
 var Starlink_Connect = class {
   baseURL = "https://web-api.starlink.com/enterprise/v2/";
@@ -158,7 +68,8 @@ var Starlink_Connect = class {
     }
     return {
       Accept: "application/json",
-      Authorization: `Bearer ${configurations.AccessToken || token}`
+      Authorization: `Bearer ${configurations.AccessToken || token}`,
+      "Content-Type": "application/json"
     };
   }
   IsAccessTokenExpired(TimeCreated) {
@@ -169,7 +80,6 @@ var Starlink_Connect = class {
   }
   async Request(accountNumber, url, method, body = {}) {
     let full_url = `${this.baseURL}${url}`;
-    console.log(full_url);
     let headers = await this.getHeader(accountNumber);
     let options = {};
     if (method === "GET") {
@@ -191,9 +101,10 @@ var Starlink_Connect = class {
         options.headers = await this.getHeader(accountNumber);
         continue;
       }
-      if (response.status === 200) {
+      if (response.ok) {
         return await response.json();
       } else {
+        console.log(response);
         throw new Error(
           `Error when making request with status code : ${response.status}`
         );
@@ -204,364 +115,364 @@ var Starlink_Connect = class {
 var starlink_connect_default = Starlink_Connect;
 
 // src/StarlinkTypes/schemas.ts
-var import_zod = require("zod");
-var ValidationResultSchema = import_zod.z.object({
-  memberNames: import_zod.z.array(import_zod.z.string()).nullable(),
-  errorMessage: import_zod.z.string().nullable()
+import { z } from "zod";
+var ValidationResultSchema = z.object({
+  memberNames: z.array(z.string()).nullable(),
+  errorMessage: z.string().nullable()
 });
-var ServiceResponseSchema = import_zod.z.object({
-  errors: import_zod.z.array(ValidationResultSchema).nullable(),
-  warnings: import_zod.z.array(ValidationResultSchema).nullable(),
-  information: import_zod.z.array(import_zod.z.string()).nullable(),
-  isValid: import_zod.z.boolean()
+var ServiceResponseSchema = z.object({
+  errors: z.array(ValidationResultSchema).nullable(),
+  warnings: z.array(ValidationResultSchema).nullable(),
+  information: z.array(z.string()).nullable(),
+  isValid: z.boolean()
 });
-var AccountResponseV2Schema = import_zod.z.object({
-  accountNumber: import_zod.z.string(),
-  regionCode: import_zod.z.string(),
-  accountName: import_zod.z.string().nullable(),
-  activeSuspensions: import_zod.z.array(import_zod.z.string()).nullable()
+var AccountResponseV2Schema = z.object({
+  accountNumber: z.string(),
+  regionCode: z.string(),
+  accountName: z.string().nullable(),
+  activeSuspensions: z.array(z.string()).nullable()
 });
 var AccountResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
   content: AccountResponseV2Schema
 });
-var AddressResponseSchema = import_zod.z.object({
-  addressReferenceId: import_zod.z.string(),
-  addressLines: import_zod.z.array(import_zod.z.string()),
-  locality: import_zod.z.string().nullable(),
-  administrativeArea: import_zod.z.string().nullable(),
-  administrativeAreaCode: import_zod.z.string(),
-  region: import_zod.z.string().nullable(),
-  regionCode: import_zod.z.string(),
-  postalCode: import_zod.z.string().nullable(),
-  metadata: import_zod.z.string().nullable(),
-  formattedAddress: import_zod.z.string(),
-  latitude: import_zod.z.number(),
-  longitude: import_zod.z.number()
+var AddressResponseSchema = z.object({
+  addressReferenceId: z.string(),
+  addressLines: z.array(z.string()),
+  locality: z.string().nullable(),
+  administrativeArea: z.string().nullable(),
+  administrativeAreaCode: z.string(),
+  region: z.string().nullable(),
+  regionCode: z.string(),
+  postalCode: z.string().nullable(),
+  metadata: z.string().nullable(),
+  formattedAddress: z.string(),
+  latitude: z.number(),
+  longitude: z.number()
 });
 var AddressResponseServiceResponseSchema = ServiceResponseSchema.extend({
   content: AddressResponseSchema
 });
-var AddressResponsePaginatedSchema = import_zod.z.object({
-  pageIndex: import_zod.z.number(),
-  limit: import_zod.z.number(),
-  isLastPage: import_zod.z.boolean(),
-  results: import_zod.z.array(AddressResponseSchema).nullable(),
-  totalCount: import_zod.z.number()
+var AddressResponsePaginatedSchema = z.object({
+  pageIndex: z.number(),
+  limit: z.number(),
+  isLastPage: z.boolean(),
+  results: z.array(AddressResponseSchema).nullable(),
+  totalCount: z.number()
 });
 var AddressResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
   content: AddressResponsePaginatedSchema
 });
-var UserResponseSchema = import_zod.z.object({
-  subjectId: import_zod.z.string(),
-  email: import_zod.z.string(),
-  roles: import_zod.z.array(import_zod.z.string())
+var UserResponseSchema = z.object({
+  subjectId: z.string(),
+  email: z.string(),
+  roles: z.array(z.string())
 });
 var UserResponseServiceResponseSchema = ServiceResponseSchema.extend({
   content: UserResponseSchema
 });
-var UserResponsePaginatedSchema = import_zod.z.object({
-  pageIndex: import_zod.z.number(),
-  limit: import_zod.z.number(),
-  isLastPage: import_zod.z.boolean(),
-  results: import_zod.z.array(UserResponseSchema).nullable(),
-  totalCount: import_zod.z.number()
+var UserResponsePaginatedSchema = z.object({
+  pageIndex: z.number(),
+  limit: z.number(),
+  isLastPage: z.boolean(),
+  results: z.array(UserResponseSchema).nullable(),
+  totalCount: z.number()
 });
 var UserResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
   content: UserResponsePaginatedSchema
 });
-var UserLacksRequiredPermissionSchema = import_zod.z.object({
-  accountId: import_zod.z.string().nullable(),
-  requiredPermission: import_zod.z.object({
-    featureAccess: import_zod.z.number(),
-    permission: import_zod.z.number()
+var UserLacksRequiredPermissionSchema = z.object({
+  accountId: z.string().nullable(),
+  requiredPermission: z.object({
+    featureAccess: z.number(),
+    permission: z.number()
   }),
-  featureAccessString: import_zod.z.string().nullable(),
-  permissionString: import_zod.z.string().nullable()
+  featureAccessString: z.string().nullable(),
+  permissionString: z.string().nullable()
 });
 var UserLacksRequiredPermissionServiceResponseSchema = ServiceResponseSchema.extend({
   content: UserLacksRequiredPermissionSchema
 });
-var DataProductResponseSchema = import_zod.z.object({
-  productId: import_zod.z.string().nullable(),
-  price: import_zod.z.number(),
-  isoCurrencyCode: import_zod.z.string().nullable(),
-  dataAmount: import_zod.z.number(),
-  dataUnit: import_zod.z.string().nullable()
+var DataProductResponseSchema = z.object({
+  productId: z.string().nullable(),
+  price: z.number(),
+  isoCurrencyCode: z.string().nullable(),
+  dataAmount: z.number(),
+  dataUnit: z.string().nullable()
 });
-var DataProductsResponseSchema = import_zod.z.object({
+var DataProductsResponseSchema = z.object({
   topUpProduct: DataProductResponseSchema.nullable(),
-  dataBlockProducts: import_zod.z.array(DataProductResponseSchema).nullable()
+  dataBlockProducts: z.array(DataProductResponseSchema).nullable()
 });
-var SubscriptionProductResponseSchema = import_zod.z.object({
-  productReferenceId: import_zod.z.string(),
-  name: import_zod.z.string(),
-  price: import_zod.z.number(),
-  isoCurrencyCode: import_zod.z.string(),
-  isSla: import_zod.z.boolean(),
-  maxNumberOfUserTerminals: import_zod.z.number().nullable(),
+var SubscriptionProductResponseSchema = z.object({
+  productReferenceId: z.string(),
+  name: z.string(),
+  price: z.number(),
+  isoCurrencyCode: z.string(),
+  isSla: z.boolean(),
+  maxNumberOfUserTerminals: z.number().nullable(),
   dataProducts: DataProductsResponseSchema.nullable()
 });
-var SubscriptionProductResponsePaginatedSchema = import_zod.z.object({
-  pageIndex: import_zod.z.number(),
-  limit: import_zod.z.number(),
-  isLastPage: import_zod.z.boolean(),
-  results: import_zod.z.array(SubscriptionProductResponseSchema).nullable(),
-  totalCount: import_zod.z.number()
+var SubscriptionProductResponsePaginatedSchema = z.object({
+  pageIndex: z.number(),
+  limit: z.number(),
+  isLastPage: z.boolean(),
+  results: z.array(SubscriptionProductResponseSchema).nullable(),
+  totalCount: z.number()
 });
 var SubscriptionProductResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
   content: SubscriptionProductResponsePaginatedSchema
 });
-var CreateManagedCustomerResponseSchema = import_zod.z.object({
-  accountNumber: import_zod.z.string().nullable(),
-  serviceAccountClientId: import_zod.z.string().nullable(),
-  serviceAccountSecret: import_zod.z.string().nullable()
+var CreateManagedCustomerResponseSchema = z.object({
+  accountNumber: z.string().nullable(),
+  serviceAccountClientId: z.string().nullable(),
+  serviceAccountSecret: z.string().nullable()
 });
 var CreateManagedCustomerResponseServiceResponseSchema = ServiceResponseSchema.extend({
   content: CreateManagedCustomerResponseSchema
 });
-var RouterResponseV2Schema = import_zod.z.object({
-  routerId: import_zod.z.string(),
-  nickname: import_zod.z.string().nullable(),
-  userTerminalId: import_zod.z.string(),
-  configId: import_zod.z.string().nullable(),
-  hardwareVersion: import_zod.z.string().nullable(),
-  lastBonded: import_zod.z.string().nullable()
+var RouterResponseV2Schema = z.object({
+  routerId: z.string(),
+  nickname: z.string().nullable(),
+  userTerminalId: z.string(),
+  configId: z.string().nullable(),
+  hardwareVersion: z.string().nullable(),
+  lastBonded: z.string().nullable()
 });
 var RouterResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
   content: RouterResponseV2Schema
 });
-var RouterConfigResponseV2Schema = import_zod.z.object({
-  configId: import_zod.z.string(),
-  nickname: import_zod.z.string(),
-  routerConfigJson: import_zod.z.string()
+var RouterConfigResponseV2Schema = z.object({
+  configId: z.string(),
+  nickname: z.string(),
+  routerConfigJson: z.string()
 });
 var RouterConfigResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
   content: RouterConfigResponseV2Schema
 });
-var RouterConfigResponseV2PaginatedSchema = import_zod.z.object({
-  pageIndex: import_zod.z.number(),
-  limit: import_zod.z.number(),
-  isLastPage: import_zod.z.boolean(),
-  results: import_zod.z.array(RouterConfigResponseV2Schema).nullable(),
-  totalCount: import_zod.z.number()
+var RouterConfigResponseV2PaginatedSchema = z.object({
+  pageIndex: z.number(),
+  limit: z.number(),
+  isLastPage: z.boolean(),
+  results: z.array(RouterConfigResponseV2Schema).nullable(),
+  totalCount: z.number()
 });
 var RouterConfigResponseV2PaginatedServiceResponseSchema = ServiceResponseSchema.extend({
   content: RouterConfigResponseV2PaginatedSchema
 });
-var DefaultRouterConfigResponseSchema = import_zod.z.object({
-  configId: import_zod.z.string().nullable()
+var DefaultRouterConfigResponseSchema = z.object({
+  configId: z.string().nullable()
 });
 var DefaultRouterConfigResponseServiceResponseSchema = ServiceResponseSchema.extend({
   content: DefaultRouterConfigResponseSchema
 });
-var RouterLocalContentResponseSchema = import_zod.z.object({
-  nickname: import_zod.z.string(),
-  uploadDate: import_zod.z.string(),
-  fileContentId: import_zod.z.string(),
-  fileContentHash: import_zod.z.string()
+var RouterLocalContentResponseSchema = z.object({
+  nickname: z.string(),
+  uploadDate: z.string(),
+  fileContentId: z.string(),
+  fileContentHash: z.string()
 });
 var RouterLocalContentResponseListServiceResponseSchema = ServiceResponseSchema.extend({
-  content: import_zod.z.array(RouterLocalContentResponseSchema).nullable()
+  content: z.array(RouterLocalContentResponseSchema).nullable()
 });
-var AddRouterLocalContentResponseV2Schema = import_zod.z.object({
-  nickname: import_zod.z.string(),
-  fileContentId: import_zod.z.string(),
-  fileContentHash: import_zod.z.string()
+var AddRouterLocalContentResponseV2Schema = z.object({
+  nickname: z.string(),
+  fileContentId: z.string(),
+  fileContentHash: z.string()
 });
 var AddRouterLocalContentResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
   content: AddRouterLocalContentResponseV2Schema
 });
-var SandboxClientResponseSchema = import_zod.z.object({
-  clientId: import_zod.z.string().nullable(),
-  sandboxId: import_zod.z.number(),
-  expiry: import_zod.z.string()
+var SandboxClientResponseSchema = z.object({
+  clientId: z.string().nullable(),
+  sandboxId: z.number(),
+  expiry: z.string()
 });
-var SandboxClientResponsePaginatedSchema = import_zod.z.object({
-  pageIndex: import_zod.z.number(),
-  limit: import_zod.z.number(),
-  isLastPage: import_zod.z.boolean(),
-  results: import_zod.z.array(SandboxClientResponseSchema).nullable(),
-  totalCount: import_zod.z.number()
+var SandboxClientResponsePaginatedSchema = z.object({
+  pageIndex: z.number(),
+  limit: z.number(),
+  isLastPage: z.boolean(),
+  results: z.array(SandboxClientResponseSchema).nullable(),
+  totalCount: z.number()
 });
 var SandboxClientResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
   content: SandboxClientResponsePaginatedSchema
 });
-var DataBucketTypeSchema = import_zod.z.number();
-var DataOverageTypeSchema = import_zod.z.number();
-var DataUsageOverageLineSchema = import_zod.z.object({
+var DataBucketTypeSchema = z.number();
+var DataOverageTypeSchema = z.number();
+var DataUsageOverageLineSchema = z.object({
   restricted: DataBucketTypeSchema,
   unrestricted: DataBucketTypeSchema,
-  pricePerGB: import_zod.z.number(),
-  usageLimitGB: import_zod.z.number(),
-  overageAmountGB: import_zod.z.number(),
-  consumedAmountGB: import_zod.z.number(),
-  overagePrice: import_zod.z.number(),
-  productId: import_zod.z.string().nullable(),
+  pricePerGB: z.number(),
+  usageLimitGB: z.number(),
+  overageAmountGB: z.number(),
+  consumedAmountGB: z.number(),
+  overagePrice: z.number(),
+  productId: z.string().nullable(),
   dataOverageType: DataOverageTypeSchema,
-  activeFrom: import_zod.z.string().nullable()
+  activeFrom: z.string().nullable()
 });
-var DataUsageDailyV2Schema = import_zod.z.object({
-  date: import_zod.z.string(),
-  priorityGB: import_zod.z.number(),
-  optInPriorityGB: import_zod.z.number(),
-  standardGB: import_zod.z.number(),
-  nonBillableGB: import_zod.z.number()
+var DataUsageDailyV2Schema = z.object({
+  date: z.string(),
+  priorityGB: z.number(),
+  optInPriorityGB: z.number(),
+  standardGB: z.number(),
+  nonBillableGB: z.number()
 });
-var DataServicePlanSchema = import_zod.z.object({
-  isoCurrencyCode: import_zod.z.string(),
-  isMobilePlan: import_zod.z.boolean(),
-  activeFrom: import_zod.z.string().nullable(),
-  subscriptionActiveFrom: import_zod.z.string().nullable(),
-  subscriptionEndDate: import_zod.z.string().nullable(),
-  overageName: import_zod.z.string().nullable(),
-  overageDescription: import_zod.z.string().nullable(),
-  isOptedIntoOverage: import_zod.z.boolean(),
-  overageLineDeactivatedDate: import_zod.z.string().nullable(),
+var DataServicePlanSchema = z.object({
+  isoCurrencyCode: z.string(),
+  isMobilePlan: z.boolean(),
+  activeFrom: z.string().nullable(),
+  subscriptionActiveFrom: z.string().nullable(),
+  subscriptionEndDate: z.string().nullable(),
+  overageName: z.string().nullable(),
+  overageDescription: z.string().nullable(),
+  isOptedIntoOverage: z.boolean(),
+  overageLineDeactivatedDate: z.string().nullable(),
   overageLine: DataUsageOverageLineSchema.nullable(),
-  dataPoolUsage: import_zod.z.any().nullable(),
-  productId: import_zod.z.string(),
-  usageLimitGB: import_zod.z.number(),
-  dataCategoryMapping: import_zod.z.record(import_zod.z.string(), DataBucketTypeSchema)
+  dataPoolUsage: z.any().nullable(),
+  productId: z.string(),
+  usageLimitGB: z.number(),
+  dataCategoryMapping: z.record(z.string(), DataBucketTypeSchema)
 });
-var DataBlockSummaryResponseSchema = import_zod.z.object({
-  productId: import_zod.z.string().nullable(),
-  startDate: import_zod.z.string(),
-  expirationDate: import_zod.z.string(),
-  count: import_zod.z.number(),
-  dataAmount: import_zod.z.number(),
-  dataUnitType: import_zod.z.string().nullable()
+var DataBlockSummaryResponseSchema = z.object({
+  productId: z.string().nullable(),
+  startDate: z.string(),
+  expirationDate: z.string(),
+  count: z.number(),
+  dataAmount: z.number(),
+  dataUnitType: z.string().nullable()
 });
-var ServiceLineDataBlocksSummaryResponseSchema = import_zod.z.object({
-  recurringBlocksCurrentBillingCycle: import_zod.z.array(DataBlockSummaryResponseSchema).nullable(),
-  recurringBlocksNextBillingCycle: import_zod.z.array(DataBlockSummaryResponseSchema).nullable(),
-  delayedProductRecurringBlocksNextCycle: import_zod.z.array(DataBlockSummaryResponseSchema).nullable(),
-  topUpBlocksOptInPurchase: import_zod.z.array(DataBlockSummaryResponseSchema).nullable(),
-  topUpBlocksOneTimePurchase: import_zod.z.array(DataBlockSummaryResponseSchema).nullable()
+var ServiceLineDataBlocksSummaryResponseSchema = z.object({
+  recurringBlocksCurrentBillingCycle: z.array(DataBlockSummaryResponseSchema).nullable(),
+  recurringBlocksNextBillingCycle: z.array(DataBlockSummaryResponseSchema).nullable(),
+  delayedProductRecurringBlocksNextCycle: z.array(DataBlockSummaryResponseSchema).nullable(),
+  topUpBlocksOptInPurchase: z.array(DataBlockSummaryResponseSchema).nullable(),
+  topUpBlocksOneTimePurchase: z.array(DataBlockSummaryResponseSchema).nullable()
 });
-var DataUsageBillingCycleV2Schema = import_zod.z.object({
-  startDate: import_zod.z.string(),
-  endDate: import_zod.z.string(),
-  dailyDataUsage: import_zod.z.array(DataUsageDailyV2Schema).nullable(),
-  overageLines: import_zod.z.array(DataUsageOverageLineSchema).nullable(),
-  dataPoolUsage: import_zod.z.array(import_zod.z.any()).nullable(),
-  totalPriorityGB: import_zod.z.number(),
-  totalStandardGB: import_zod.z.number(),
-  totalOptInPriorityGB: import_zod.z.number(),
-  totalNonBillableGB: import_zod.z.number()
+var DataUsageBillingCycleV2Schema = z.object({
+  startDate: z.string(),
+  endDate: z.string(),
+  dailyDataUsage: z.array(DataUsageDailyV2Schema).nullable(),
+  overageLines: z.array(DataUsageOverageLineSchema).nullable(),
+  dataPoolUsage: z.array(z.any()).nullable(),
+  totalPriorityGB: z.number(),
+  totalStandardGB: z.number(),
+  totalOptInPriorityGB: z.number(),
+  totalNonBillableGB: z.number()
 });
-var DataPoolUsagePublicResponseSchema = import_zod.z.object({
-  accountNumber: import_zod.z.string().nullable(),
-  dataPoolId: import_zod.z.string(),
-  lastUpdated: import_zod.z.string(),
-  dataBlocks: import_zod.z.array(import_zod.z.any())
+var DataPoolUsagePublicResponseSchema = z.object({
+  accountNumber: z.string().nullable(),
+  dataPoolId: z.string(),
+  lastUpdated: z.string(),
+  dataBlocks: z.array(z.any())
 });
-var ServiceLineDataUsageForBillingCyclesSchema = import_zod.z.object({
-  accountNumber: import_zod.z.string().nullable(),
-  serviceLineNumber: import_zod.z.string().nullable(),
-  startDate: import_zod.z.string(),
-  endDate: import_zod.z.string(),
-  billingCycles: import_zod.z.array(DataUsageBillingCycleV2Schema).nullable(),
+var ServiceLineDataUsageForBillingCyclesSchema = z.object({
+  accountNumber: z.string().nullable(),
+  serviceLineNumber: z.string().nullable(),
+  startDate: z.string(),
+  endDate: z.string(),
+  billingCycles: z.array(DataUsageBillingCycleV2Schema).nullable(),
   servicePlan: DataServicePlanSchema.nullable(),
-  lastUpdated: import_zod.z.string().nullable()
+  lastUpdated: z.string().nullable()
 });
-var ServiceLineDataUsageForBillingCyclesPaginatedSchema = import_zod.z.object({
-  pageIndex: import_zod.z.number(),
-  limit: import_zod.z.number(),
-  isLastPage: import_zod.z.boolean(),
-  results: import_zod.z.array(ServiceLineDataUsageForBillingCyclesSchema).nullable(),
-  totalCount: import_zod.z.number()
+var ServiceLineDataUsageForBillingCyclesPaginatedSchema = z.object({
+  pageIndex: z.number(),
+  limit: z.number(),
+  isLastPage: z.boolean(),
+  results: z.array(ServiceLineDataUsageForBillingCyclesSchema).nullable(),
+  totalCount: z.number()
 });
 var ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema = ServiceResponseSchema.extend({
   content: ServiceLineDataUsageForBillingCyclesPaginatedSchema
 });
-var AviationMetadataResponseSchema = import_zod.z.object({
-  tailNumber: import_zod.z.string().nullable(),
-  seatCount: import_zod.z.number(),
-  airlineIataCode: import_zod.z.string().nullable(),
-  aircraftIataCode: import_zod.z.string().nullable(),
-  airlineIcaoCode: import_zod.z.string().nullable(),
-  aircraftIcaoCode: import_zod.z.string().nullable(),
-  stcNumber: import_zod.z.string().nullable()
+var AviationMetadataResponseSchema = z.object({
+  tailNumber: z.string().nullable(),
+  seatCount: z.number(),
+  airlineIataCode: z.string().nullable(),
+  aircraftIataCode: z.string().nullable(),
+  airlineIcaoCode: z.string().nullable(),
+  aircraftIcaoCode: z.string().nullable(),
+  stcNumber: z.string().nullable()
 });
-var L2VpnCircuitResponseSchema = import_zod.z.object({
-  circuitId: import_zod.z.string().nullable(),
-  popName: import_zod.z.string().nullable()
+var L2VpnCircuitResponseSchema = z.object({
+  circuitId: z.string().nullable(),
+  popName: z.string().nullable()
 });
 var L2VpnCircuitResponseListServiceResponseSchema = ServiceResponseSchema.extend({
-  content: import_zod.z.array(L2VpnCircuitResponseSchema).nullable()
+  content: z.array(L2VpnCircuitResponseSchema).nullable()
 });
-var L2VpnCircuitDefinitionSchema = import_zod.z.object({
-  circuitId: import_zod.z.string(),
-  customerVlans: import_zod.z.array(import_zod.z.number()),
-  serviceVlan: import_zod.z.number().nullable()
+var L2VpnCircuitDefinitionSchema = z.object({
+  circuitId: z.string(),
+  customerVlans: z.array(z.number()),
+  serviceVlan: z.number().nullable()
 });
-var RouterResponseV2ForUserTerminalSchema = import_zod.z.object({
-  routerId: import_zod.z.string(),
-  nickname: import_zod.z.string().nullable(),
-  userTerminalId: import_zod.z.string(),
-  configId: import_zod.z.string().nullable(),
-  hardwareVersion: import_zod.z.string().nullable(),
-  lastBonded: import_zod.z.string().nullable()
+var RouterResponseV2ForUserTerminalSchema = z.object({
+  routerId: z.string(),
+  nickname: z.string().nullable(),
+  userTerminalId: z.string(),
+  configId: z.string().nullable(),
+  hardwareVersion: z.string().nullable(),
+  lastBonded: z.string().nullable()
 });
-var UserTerminalResponseV2Schema = import_zod.z.object({
-  userTerminalId: import_zod.z.string(),
-  nickname: import_zod.z.string().nullable(),
-  kitSerialNumber: import_zod.z.string(),
-  dishSerialNumber: import_zod.z.string(),
-  serviceLineNumber: import_zod.z.string().nullable(),
-  l2VpnCircuits: import_zod.z.array(L2VpnCircuitDefinitionSchema),
-  routers: import_zod.z.array(RouterResponseV2ForUserTerminalSchema)
+var UserTerminalResponseV2Schema = z.object({
+  userTerminalId: z.string(),
+  nickname: z.string().nullable(),
+  kitSerialNumber: z.string(),
+  dishSerialNumber: z.string(),
+  serviceLineNumber: z.string().nullable(),
+  l2VpnCircuits: z.array(L2VpnCircuitDefinitionSchema),
+  routers: z.array(RouterResponseV2ForUserTerminalSchema)
 });
-var UserTerminalResponseV2PaginatedSchema = import_zod.z.object({
-  pageIndex: import_zod.z.number(),
-  limit: import_zod.z.number(),
-  isLastPage: import_zod.z.boolean(),
-  results: import_zod.z.array(UserTerminalResponseV2Schema).nullable(),
-  totalCount: import_zod.z.number()
+var UserTerminalResponseV2PaginatedSchema = z.object({
+  pageIndex: z.number(),
+  limit: z.number(),
+  isLastPage: z.boolean(),
+  results: z.array(UserTerminalResponseV2Schema).nullable(),
+  totalCount: z.number()
 });
 var UserTerminalResponseV2PaginatedServiceResponseSchema = ServiceResponseSchema.extend({
   content: UserTerminalResponseV2PaginatedSchema
 });
-var ServiceLineResponseSchema = import_zod.z.object({
-  addressReferenceId: import_zod.z.string(),
-  serviceLineNumber: import_zod.z.string(),
-  nickname: import_zod.z.string().nullable(),
-  productReferenceId: import_zod.z.string(),
-  delayedProductId: import_zod.z.string().nullable(),
-  optInProductId: import_zod.z.string().nullable(),
-  startDate: import_zod.z.string().nullable(),
-  endDate: import_zod.z.string().nullable(),
-  publicIp: import_zod.z.boolean(),
-  active: import_zod.z.boolean(),
+var ServiceLineResponseSchema = z.object({
+  addressReferenceId: z.string(),
+  serviceLineNumber: z.string(),
+  nickname: z.string().nullable(),
+  productReferenceId: z.string(),
+  delayedProductId: z.string().nullable(),
+  optInProductId: z.string().nullable(),
+  startDate: z.string().nullable(),
+  endDate: z.string().nullable(),
+  publicIp: z.boolean(),
+  active: z.boolean(),
   aviationMetadata: AviationMetadataResponseSchema.nullable(),
   dataBlocks: ServiceLineDataBlocksSummaryResponseSchema.nullable()
 });
 var ServiceLineResponseServiceResponseSchema = ServiceResponseSchema.extend({
   content: ServiceLineResponseSchema
 });
-var ServiceLineResponsePaginatedSchema = import_zod.z.object({
-  pageIndex: import_zod.z.number(),
-  limit: import_zod.z.number(),
-  isLastPage: import_zod.z.boolean(),
-  results: import_zod.z.array(ServiceLineResponseSchema).nullable(),
-  totalCount: import_zod.z.number()
+var ServiceLineResponsePaginatedSchema = z.object({
+  pageIndex: z.number(),
+  limit: z.number(),
+  isLastPage: z.boolean(),
+  results: z.array(ServiceLineResponseSchema).nullable(),
+  totalCount: z.number()
 });
 var ServiceLineResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
   content: ServiceLineResponsePaginatedSchema
 });
-var PartialPeriodResponseSchema = import_zod.z.object({
-  productReferenceId: import_zod.z.string(),
-  periodStart: import_zod.z.string(),
-  periodEnd: import_zod.z.string()
+var PartialPeriodResponseSchema = z.object({
+  productReferenceId: z.string(),
+  periodStart: z.string(),
+  periodEnd: z.string()
 });
 var PartialPeriodResponseListServiceResponseSchema = ServiceResponseSchema.extend({
-  content: import_zod.z.array(PartialPeriodResponseSchema).nullable()
+  content: z.array(PartialPeriodResponseSchema).nullable()
 });
-var OptInResponseSchema = import_zod.z.object({
-  productId: import_zod.z.string(),
-  activatedDate: import_zod.z.string(),
-  deactivatedDate: import_zod.z.string().nullable(),
-  isInOptInCoolDown: import_zod.z.boolean()
+var OptInResponseSchema = z.object({
+  productId: z.string(),
+  activatedDate: z.string(),
+  deactivatedDate: z.string().nullable(),
+  isInOptInCoolDown: z.boolean()
 });
 var OptInResponseServiceResponseSchema = ServiceResponseSchema.extend({
   content: OptInResponseSchema
@@ -581,13 +492,13 @@ var Starlink = class _Starlink {
     return _Starlink.instance;
   }
   static init(configurations) {
-    if (!_Starlink.instance) {
+    if (_Starlink.instance) {
       console.warn(
         "Package is already initialized and this configuration will be ingnored"
       );
-      _Starlink.instance = new _Starlink(configurations);
+      return _Starlink.instance;
     }
-    return _Starlink.instance;
+    return new _Starlink(configurations);
   }
   async getAccount(accountNumber) {
     const url = "account";
@@ -603,10 +514,9 @@ var Starlink = class _Starlink {
   }) {
     const url = "data-usage/query";
     const params = new URLSearchParams({ page: `${page}`, limit: `${limit}` });
-    console.log(`${url}?${params.toString()}`);
     const response = await this.starlinkConnect.Request(
       accountNumber,
-      `${url}${params.toString()}`,
+      `${url}?${params.toString()}`,
       "POST",
       queryDataUsageRequest
     );
@@ -1127,8 +1037,7 @@ var Starlink = class _Starlink {
     return ServiceResponseSchema.parse(response);
   }
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+export {
   AccountResponseV2Schema,
   AccountResponseV2ServiceResponseSchema,
   AddRouterLocalContentResponseV2Schema,
@@ -1194,5 +1103,5 @@ var Starlink = class _Starlink {
   UserTerminalResponseV2PaginatedServiceResponseSchema,
   UserTerminalResponseV2Schema,
   ValidationResultSchema
-});
+};
 //# sourceMappingURL=index.js.map
