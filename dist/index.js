@@ -498,7 +498,8 @@ var Starlink = class _Starlink {
       );
       return _Starlink.instance;
     }
-    return new _Starlink(configurations);
+    this.instance = new _Starlink(configurations);
+    return this.instance;
   }
   async getAccount(accountNumber) {
     const url = "account";

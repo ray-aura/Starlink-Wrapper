@@ -70,7 +70,8 @@ export default class Starlink {
       );
       return Starlink.instance;
     }
-    return new Starlink(configurations);
+    this.instance = new Starlink(configurations);
+    return this.instance;
   }
 
   public async getAccount(accountNumber: string) {
