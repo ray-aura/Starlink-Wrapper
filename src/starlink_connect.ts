@@ -145,17 +145,4 @@ class Starlink_Connect {
   }
 }
 
-/*
-const main = async () => {
-  let starlink = new Starlink_Connect({
-    ClientId: "143447c1-6395-4cf8-876a-f0b59baffbce",
-    AccountNumber: "ACC-7575740-96586-34",
-    ClientSecret: "0775447842JnrAndile#",
-  });
-};
-
-//main().then((a) => console.log(a));
-//
-//\
-*/
 export default Starlink_Connect;
