@@ -95,7 +95,6 @@ export default class Starlink {
     const url = "data-usage/query";
     const params = new URLSearchParams({ page: `${page}`, limit: `${limit}` });
 
-    //console.log(`${url}?${params.toString()}`);
     const response = await this.starlinkConnect.Request(
       accountNumber,
       `${url}?${params.toString()}`,

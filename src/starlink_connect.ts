@@ -124,7 +124,6 @@ class Starlink_Connect {
       };
     }
 
-    console.log(options);
     // loop for instances were access token might expire
     for (let i = 0; i < 2; i++) {
       const response = await fetch(full_url, options);
