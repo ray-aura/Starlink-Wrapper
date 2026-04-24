@@ -60,15 +60,15 @@ class Starlink_Connect {
    *
    *
    * */
-  private async getHeader(
-    accountNumber: string,
-  ): Promise<{ [key: string]: string }> {
+  private async getHeader(accountNumber: string) {
     let token = "";
 
     let configurations = this.credentialsMap.get(accountNumber);
 
     if (!configurations) {
-      throw new Error("This account was not set up at initalisation");
+      throw new Error(
+        `Account with number: ${accountNumber} was not set up at initalisation`,
+      );
     }
 
     if (
@@ -84,11 +84,15 @@ class Starlink_Connect {
         ClientId: configurations.ClientId,
       });
     }
-    return {
-      Accept: "application/json",
-      Authorization: `Bearer ${configurations.AccessToken || token}`,
-      "Content-Type": "application/json",
-    };
+    const headers = new Headers();
+    headers.append("accept", "application/json");
+    headers.append(
+      "Authorization",
+      `Bearer ${configurations.AccessToken || token}`,
+    );
+
+    headers.append("Content-Type", "application/json");
+    return headers;
   }
 
   private IsAccessTokenExpired(TimeCreated: number | null): boolean {

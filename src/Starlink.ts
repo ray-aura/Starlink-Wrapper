@@ -275,6 +275,8 @@ export default class Starlink {
       `${url}?${params.toString()}`,
       "GET",
     );
+    console.log("From Get Router configs");
+    console.log(response);
     return RouterConfigResponseV2PaginatedServiceResponseSchema.parse(response);
   }
 

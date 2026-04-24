@@ -55,7 +55,9 @@ var Starlink_Connect = class {
     let token = "";
     let configurations = this.credentialsMap.get(accountNumber);
     if (!configurations) {
-      throw new Error("This account was not set up at initalisation");
+      throw new Error(
+        `Account with number: ${accountNumber} was not set up at initalisation`
+      );
     }
     if (!configurations.AccessToken || this.IsAccessTokenExpired(configurations.TimeCreated)) {
       token = await this.fetchAccessToken(configurations);
@@ -66,11 +68,14 @@ var Starlink_Connect = class {
         ClientId: configurations.ClientId
       });
     }
-    return {
-      Accept: "application/json",
-      Authorization: `Bearer ${configurations.AccessToken || token}`,
-      "Content-Type": "application/json"
-    };
+    const headers = new Headers();
+    headers.append("accept", "application/json");
+    headers.append(
+      "Authorization",
+      `Bearer ${configurations.AccessToken || token}`
+    );
+    headers.append("Content-Type", "application/json");
+    return headers;
   }
   IsAccessTokenExpired(TimeCreated) {
     if (!TimeCreated) return true;
@@ -94,7 +99,6 @@ var Starlink_Connect = class {
         body: JSON.stringify(body)
       };
     }
-    console.log(options);
     for (let i = 0; i < 2; i++) {
       const response = await fetch(full_url, options);
       if (response.status === 401) {
@@ -243,7 +247,7 @@ var RouterResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
 });
 var RouterConfigResponseV2Schema = z.object({
   configId: z.string(),
-  nickname: z.string(),
+  nickname: z.string().nullable(),
   routerConfigJson: z.string()
 });
 var RouterConfigResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
@@ -649,6 +653,8 @@ var Starlink = class _Starlink {
       `${url}?${params.toString()}`,
       "GET"
     );
+    console.log("From Get Router configs");
+    console.log(response);
     return RouterConfigResponseV2PaginatedServiceResponseSchema.parse(response);
   }
   async createRouterConfig(accountNumber, config) {

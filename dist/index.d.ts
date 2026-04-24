@@ -516,7 +516,7 @@ declare class Starlink {
             isLastPage: boolean;
             results: {
                 configId: string;
-                nickname: string;
+                nickname: string | null;
                 routerConfigJson: string;
             }[] | null;
             totalCount: number;
@@ -535,7 +535,7 @@ declare class Starlink {
         isValid: boolean;
         content: {
             configId: string;
-            nickname: string;
+            nickname: string | null;
             routerConfigJson: string;
         };
     }>;
@@ -552,7 +552,7 @@ declare class Starlink {
         isValid: boolean;
         content: {
             configId: string;
-            nickname: string;
+            nickname: string | null;
             routerConfigJson: string;
         };
     }>;
@@ -569,7 +569,7 @@ declare class Starlink {
         isValid: boolean;
         content: {
             configId: string;
-            nickname: string;
+            nickname: string | null;
             routerConfigJson: string;
         };
     }>;
@@ -1699,7 +1699,7 @@ declare const RouterResponseV2ServiceResponseSchema: z.ZodObject<{
 }, z.core.$strip>;
 declare const RouterConfigResponseV2Schema: z.ZodObject<{
     configId: z.ZodString;
-    nickname: z.ZodString;
+    nickname: z.ZodNullable<z.ZodString>;
     routerConfigJson: z.ZodString;
 }, z.core.$strip>;
 declare const RouterConfigResponseV2ServiceResponseSchema: z.ZodObject<{
@@ -1715,7 +1715,7 @@ declare const RouterConfigResponseV2ServiceResponseSchema: z.ZodObject<{
     isValid: z.ZodBoolean;
     content: z.ZodObject<{
         configId: z.ZodString;
-        nickname: z.ZodString;
+        nickname: z.ZodNullable<z.ZodString>;
         routerConfigJson: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>;
@@ -1725,7 +1725,7 @@ declare const RouterConfigResponseV2PaginatedSchema: z.ZodObject<{
     isLastPage: z.ZodBoolean;
     results: z.ZodNullable<z.ZodArray<z.ZodObject<{
         configId: z.ZodString;
-        nickname: z.ZodString;
+        nickname: z.ZodNullable<z.ZodString>;
         routerConfigJson: z.ZodString;
     }, z.core.$strip>>>;
     totalCount: z.ZodNumber;
@@ -1747,7 +1747,7 @@ declare const RouterConfigResponseV2PaginatedServiceResponseSchema: z.ZodObject<
         isLastPage: z.ZodBoolean;
         results: z.ZodNullable<z.ZodArray<z.ZodObject<{
             configId: z.ZodString;
-            nickname: z.ZodString;
+            nickname: z.ZodNullable<z.ZodString>;
             routerConfigJson: z.ZodString;
         }, z.core.$strip>>>;
         totalCount: z.ZodNumber;

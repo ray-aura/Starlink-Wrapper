@@ -1,6 +1,6 @@
 {
   "name": "starlink-wrapper",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A typesafe starlink v2 wrapper",
   "keywords": [
     "starlink"

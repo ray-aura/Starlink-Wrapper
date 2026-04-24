@@ -1,3 +1,10 @@
+## 1.0.5
+
+## Fixed
+
+- Added nullable option to nickname field for the routerConfiguration schema
+- Started using Header Object instead of raw objects for requests
+
 ## 1.0.4
 
 ### Fixed

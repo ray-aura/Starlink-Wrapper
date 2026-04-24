@@ -19,9 +19,10 @@ export const AccountResponseV2Schema = z.object({
   activeSuspensions: z.array(z.string()).nullable(),
 });
 
-export const AccountResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
-  content: AccountResponseV2Schema,
-});
+export const AccountResponseV2ServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: AccountResponseV2Schema,
+  });
 
 export const AddressResponseSchema = z.object({
   addressReferenceId: z.string(),
@@ -38,9 +39,10 @@ export const AddressResponseSchema = z.object({
   longitude: z.number(),
 });
 
-export const AddressResponseServiceResponseSchema = ServiceResponseSchema.extend({
-  content: AddressResponseSchema,
-});
+export const AddressResponseServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: AddressResponseSchema,
+  });
 
 export const AddressResponsePaginatedSchema = z.object({
   pageIndex: z.number(),
@@ -50,9 +52,10 @@ export const AddressResponsePaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const AddressResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
-  content: AddressResponsePaginatedSchema,
-});
+export const AddressResponsePaginatedServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: AddressResponsePaginatedSchema,
+  });
 
 export const UserResponseSchema = z.object({
   subjectId: z.string(),
@@ -72,9 +75,10 @@ export const UserResponsePaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const UserResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
-  content: UserResponsePaginatedSchema,
-});
+export const UserResponsePaginatedServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: UserResponsePaginatedSchema,
+  });
 
 export const UserLacksRequiredPermissionSchema = z.object({
   accountId: z.string().nullable(),
@@ -86,9 +90,10 @@ export const UserLacksRequiredPermissionSchema = z.object({
   permissionString: z.string().nullable(),
 });
 
-export const UserLacksRequiredPermissionServiceResponseSchema = ServiceResponseSchema.extend({
-  content: UserLacksRequiredPermissionSchema,
-});
+export const UserLacksRequiredPermissionServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: UserLacksRequiredPermissionSchema,
+  });
 
 export const DataProductResponseSchema = z.object({
   productId: z.string().nullable(),
@@ -121,9 +126,10 @@ export const SubscriptionProductResponsePaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const SubscriptionProductResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
-  content: SubscriptionProductResponsePaginatedSchema,
-});
+export const SubscriptionProductResponsePaginatedServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: SubscriptionProductResponsePaginatedSchema,
+  });
 
 export const CreateManagedCustomerResponseSchema = z.object({
   accountNumber: z.string().nullable(),
@@ -131,9 +137,10 @@ export const CreateManagedCustomerResponseSchema = z.object({
   serviceAccountSecret: z.string().nullable(),
 });
 
-export const CreateManagedCustomerResponseServiceResponseSchema = ServiceResponseSchema.extend({
-  content: CreateManagedCustomerResponseSchema,
-});
+export const CreateManagedCustomerResponseServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: CreateManagedCustomerResponseSchema,
+  });
 
 export const RouterResponseV2Schema = z.object({
   routerId: z.string(),
@@ -144,19 +151,21 @@ export const RouterResponseV2Schema = z.object({
   lastBonded: z.string().nullable(),
 });
 
-export const RouterResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
-  content: RouterResponseV2Schema,
-});
+export const RouterResponseV2ServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: RouterResponseV2Schema,
+  });
 
 export const RouterConfigResponseV2Schema = z.object({
   configId: z.string(),
-  nickname: z.string(),
+  nickname: z.string().nullable(),
   routerConfigJson: z.string(),
 });
 
-export const RouterConfigResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
-  content: RouterConfigResponseV2Schema,
-});
+export const RouterConfigResponseV2ServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: RouterConfigResponseV2Schema,
+  });
 
 export const RouterConfigResponseV2PaginatedSchema = z.object({
   pageIndex: z.number(),
@@ -166,17 +175,19 @@ export const RouterConfigResponseV2PaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const RouterConfigResponseV2PaginatedServiceResponseSchema = ServiceResponseSchema.extend({
-  content: RouterConfigResponseV2PaginatedSchema,
-});
+export const RouterConfigResponseV2PaginatedServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: RouterConfigResponseV2PaginatedSchema,
+  });
 
 export const DefaultRouterConfigResponseSchema = z.object({
   configId: z.string().nullable(),
 });
 
-export const DefaultRouterConfigResponseServiceResponseSchema = ServiceResponseSchema.extend({
-  content: DefaultRouterConfigResponseSchema,
-});
+export const DefaultRouterConfigResponseServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: DefaultRouterConfigResponseSchema,
+  });
 
 export const RouterLocalContentResponseSchema = z.object({
   nickname: z.string(),
@@ -185,9 +196,10 @@ export const RouterLocalContentResponseSchema = z.object({
   fileContentHash: z.string(),
 });
 
-export const RouterLocalContentResponseListServiceResponseSchema = ServiceResponseSchema.extend({
-  content: z.array(RouterLocalContentResponseSchema).nullable(),
-});
+export const RouterLocalContentResponseListServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: z.array(RouterLocalContentResponseSchema).nullable(),
+  });
 
 export const AddRouterLocalContentResponseV2Schema = z.object({
   nickname: z.string(),
@@ -195,9 +207,10 @@ export const AddRouterLocalContentResponseV2Schema = z.object({
   fileContentHash: z.string(),
 });
 
-export const AddRouterLocalContentResponseV2ServiceResponseSchema = ServiceResponseSchema.extend({
-  content: AddRouterLocalContentResponseV2Schema,
-});
+export const AddRouterLocalContentResponseV2ServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: AddRouterLocalContentResponseV2Schema,
+  });
 
 export const SandboxClientResponseSchema = z.object({
   clientId: z.string().nullable(),
@@ -213,9 +226,10 @@ export const SandboxClientResponsePaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const SandboxClientResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
-  content: SandboxClientResponsePaginatedSchema,
-});
+export const SandboxClientResponsePaginatedServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: SandboxClientResponsePaginatedSchema,
+  });
 
 export const DataBucketTypeSchema = z.number();
 export const DataOverageTypeSchema = z.number();
@@ -268,11 +282,19 @@ export const DataBlockSummaryResponseSchema = z.object({
 });
 
 export const ServiceLineDataBlocksSummaryResponseSchema = z.object({
-  recurringBlocksCurrentBillingCycle: z.array(DataBlockSummaryResponseSchema).nullable(),
-  recurringBlocksNextBillingCycle: z.array(DataBlockSummaryResponseSchema).nullable(),
-  delayedProductRecurringBlocksNextCycle: z.array(DataBlockSummaryResponseSchema).nullable(),
+  recurringBlocksCurrentBillingCycle: z
+    .array(DataBlockSummaryResponseSchema)
+    .nullable(),
+  recurringBlocksNextBillingCycle: z
+    .array(DataBlockSummaryResponseSchema)
+    .nullable(),
+  delayedProductRecurringBlocksNextCycle: z
+    .array(DataBlockSummaryResponseSchema)
+    .nullable(),
   topUpBlocksOptInPurchase: z.array(DataBlockSummaryResponseSchema).nullable(),
-  topUpBlocksOneTimePurchase: z.array(DataBlockSummaryResponseSchema).nullable(),
+  topUpBlocksOneTimePurchase: z
+    .array(DataBlockSummaryResponseSchema)
+    .nullable(),
 });
 
 export const DataUsageBillingCycleV2Schema = z.object({
@@ -312,9 +334,10 @@ export const ServiceLineDataUsageForBillingCyclesPaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema = ServiceResponseSchema.extend({
-  content: ServiceLineDataUsageForBillingCyclesPaginatedSchema,
-});
+export const ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: ServiceLineDataUsageForBillingCyclesPaginatedSchema,
+  });
 
 export const AviationMetadataResponseSchema = z.object({
   tailNumber: z.string().nullable(),
@@ -331,9 +354,10 @@ export const L2VpnCircuitResponseSchema = z.object({
   popName: z.string().nullable(),
 });
 
-export const L2VpnCircuitResponseListServiceResponseSchema = ServiceResponseSchema.extend({
-  content: z.array(L2VpnCircuitResponseSchema).nullable(),
-});
+export const L2VpnCircuitResponseListServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: z.array(L2VpnCircuitResponseSchema).nullable(),
+  });
 
 export const L2VpnCircuitDefinitionSchema = z.object({
   circuitId: z.string(),
@@ -368,9 +392,10 @@ export const UserTerminalResponseV2PaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const UserTerminalResponseV2PaginatedServiceResponseSchema = ServiceResponseSchema.extend({
-  content: UserTerminalResponseV2PaginatedSchema,
-});
+export const UserTerminalResponseV2PaginatedServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: UserTerminalResponseV2PaginatedSchema,
+  });
 
 export const ServiceLineResponseSchema = z.object({
   addressReferenceId: z.string(),
@@ -387,9 +412,10 @@ export const ServiceLineResponseSchema = z.object({
   dataBlocks: ServiceLineDataBlocksSummaryResponseSchema.nullable(),
 });
 
-export const ServiceLineResponseServiceResponseSchema = ServiceResponseSchema.extend({
-  content: ServiceLineResponseSchema,
-});
+export const ServiceLineResponseServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: ServiceLineResponseSchema,
+  });
 
 export const ServiceLineResponsePaginatedSchema = z.object({
   pageIndex: z.number(),
@@ -399,9 +425,10 @@ export const ServiceLineResponsePaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const ServiceLineResponsePaginatedServiceResponseSchema = ServiceResponseSchema.extend({
-  content: ServiceLineResponsePaginatedSchema,
-});
+export const ServiceLineResponsePaginatedServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: ServiceLineResponsePaginatedSchema,
+  });
 
 export const PartialPeriodResponseSchema = z.object({
   productReferenceId: z.string(),
@@ -409,9 +436,10 @@ export const PartialPeriodResponseSchema = z.object({
   periodEnd: z.string(),
 });
 
-export const PartialPeriodResponseListServiceResponseSchema = ServiceResponseSchema.extend({
-  content: z.array(PartialPeriodResponseSchema).nullable(),
-});
+export const PartialPeriodResponseListServiceResponseSchema =
+  ServiceResponseSchema.extend({
+    content: z.array(PartialPeriodResponseSchema).nullable(),
+  });
 
 export const OptInResponseSchema = z.object({
   productId: z.string(),
