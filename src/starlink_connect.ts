@@ -42,7 +42,9 @@ class Starlink_Connect {
     );
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch access token: ${response.statusText}`);
+      throw new Error(
+        `Failed to fetch access token with code: ${response.status} and status message: ${response.statusText}`,
+      );
     }
 
     let accessToken: any = await response.json();
@@ -109,8 +111,9 @@ class Starlink_Connect {
     url: string,
     method: "GET" | "POST" | "PUT" | "DELETE",
     body = {},
+    telemery: boolean = false,
   ): Promise<any> {
-    let full_url = `${this.baseURL}${url}`;
+    let full_url = telemery ? url : `${this.baseURL}${url}`;
     let headers = await this.getHeader(accountNumber);
 
     let options: any = {};

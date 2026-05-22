@@ -19,6 +19,7 @@ A TypeScript wrapper for the Starlink Enterprise API v2. This library provides m
   - [Service Lines](#service-lines)
   - [User Terminals](#user-terminals)
   - [L2 VPN](#l2-vpn)
+  - [Telemetry](#telemetry)
 
 ---
 
@@ -67,45 +68,45 @@ const account = await client.getAccount("ACC-1111111-11111-11");
 
 ### Core Types
 
-| Type | Description |
-|------|-------------|
-| [`StarlinkArgs`](#starlinkargs) | Configuration for initializing the API client |
-| [`StarlinkCredinitals`](#starlinkcredinitals) | Internal credentials storage type |
+| Type                                          | Description                                   |
+| --------------------------------------------- | --------------------------------------------- |
+| [`StarlinkArgs`](#starlinkargs)               | Configuration for initializing the API client |
+| [`StarlinkCredinitals`](#starlinkcredinitals) | Internal credentials storage type             |
 
 ### Request Types
 
-| Type | Description |
-|------|-------------|
-| [`QueryDataUsageRequest`](#querydatausagerequest) | Filters for data usage queries |
-| [`AddressCreateRequest`](#addresscreaterequest) | Request to create an address |
-| [`AddressUpdateRequest`](#addressupdaterequest) | Request to update an address |
-| [`CreateContactOnAccountRequest`](#createcontactonaccountrequest) | Request to create a contact |
-| [`UpdateContactOnAccountRequest`](#updatecontactonaccountrequest) | Request to update a contact |
-| [`CreateManagedCustomerRequest`](#createmanagedcustomerrequest) | Request to create managed customer |
-| [`RouterConfigRequest`](#routerconfigrequest) | Request to create/update router config |
-| [`AssignRoutersConfigRequest`](#assignroutersconfigrequest) | Request to assign config to routers |
-| [`TlsConfigCreateRequest`](#tlsconfigcreaterequest) | Request to create TLS config |
-| [`DeleteTlsConfigRequest`](#deletetlsconfigrequest) | Request to delete TLS config |
-| [`ServiceLineCreateRequest`](#servicelinecreaterequest) | Request to create service line |
+| Type                                                                    | Description                             |
+| ----------------------------------------------------------------------- | --------------------------------------- |
+| [`QueryDataUsageRequest`](#querydatausagerequest)                       | Filters for data usage queries          |
+| [`AddressCreateRequest`](#addresscreaterequest)                         | Request to create an address            |
+| [`AddressUpdateRequest`](#addressupdaterequest)                         | Request to update an address            |
+| [`CreateContactOnAccountRequest`](#createcontactonaccountrequest)       | Request to create a contact             |
+| [`UpdateContactOnAccountRequest`](#updatecontactonaccountrequest)       | Request to update a contact             |
+| [`CreateManagedCustomerRequest`](#createmanagedcustomerrequest)         | Request to create managed customer      |
+| [`RouterConfigRequest`](#routerconfigrequest)                           | Request to create/update router config  |
+| [`AssignRoutersConfigRequest`](#assignroutersconfigrequest)             | Request to assign config to routers     |
+| [`TlsConfigCreateRequest`](#tlsconfigcreaterequest)                     | Request to create TLS config            |
+| [`DeleteTlsConfigRequest`](#deletetlsconfigrequest)                     | Request to delete TLS config            |
+| [`ServiceLineCreateRequest`](#servicelinecreaterequest)                 | Request to create service line          |
 | [`ServiceLineUpdateNicknameRequest`](#servicelineupdatenicknamerequest) | Request to update service line nickname |
-| [`UpdateServiceLineProductRequest`](#updateservicelineproductrequest) | Request to update service line product |
-| [`ServiceLineSetPublicIpRequest`](#servicelinesetpubliciprequest) | Request to set public IP |
-| [`RecurringDataBlocksRequest`](#recurringdatablocksrequest) | Request for recurring data blocks |
+| [`UpdateServiceLineProductRequest`](#updateservicelineproductrequest)   | Request to update service line product  |
+| [`ServiceLineSetPublicIpRequest`](#servicelinesetpubliciprequest)       | Request to set public IP                |
+| [`RecurringDataBlocksRequest`](#recurringdatablocksrequest)             | Request for recurring data blocks       |
 
 ### Response Types (Jump to: [Schemas](#schemas-reference))
 
-| Type | Description |
-|------|-------------|
-| [`AccountResponseV2ServiceResponseSchema`](#accountresponsev2serviceresponseschema) | Account information response |
-| [`AddressResponseServiceResponseSchema`](#addressresponseserviceresponseschema) | Single address response |
-| [`AddressResponsePaginatedServiceResponseSchema`](#addressresponsepaginatedserviceresponseschema) | Paginated addresses response |
-| [`ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema`](#servicelinedatausageforbillingcyclespaginatedserviceresponseschema) | Data usage response |
-| [`ServiceLineResponseServiceResponseSchema`](#servicelineresponseserviceresponseschema) | Single service line response |
-| [`ServiceLineResponsePaginatedServiceResponseSchema`](#servicelineresponsepaginatedserviceresponseschema) | Paginated service lines response |
-| [`UserTerminalResponseV2PaginatedServiceResponseSchema`](#userterminalresponsev2paginatedserviceresponseschema) | Paginated user terminals response |
-| [`RouterResponseV2ServiceResponseSchema`](#routerresponsev2serviceresponseschema) | Router information response |
-| [`RouterConfigResponseV2ServiceResponseSchema`](#routerconfigresponsev2serviceresponseschema) | Router config response |
-| [`RouterConfigResponseV2PaginatedServiceResponseSchema`](#routerconfigresponsev2paginatedserviceresponseschema) | Paginated router configs response |
+| Type                                                                                                                                        | Description                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| [`AccountResponseV2ServiceResponseSchema`](#accountresponsev2serviceresponseschema)                                                         | Account information response      |
+| [`AddressResponseServiceResponseSchema`](#addressresponseserviceresponseschema)                                                             | Single address response           |
+| [`AddressResponsePaginatedServiceResponseSchema`](#addressresponsepaginatedserviceresponseschema)                                           | Paginated addresses response      |
+| [`ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema`](#servicelinedatausageforbillingcyclespaginatedserviceresponseschema) | Data usage response               |
+| [`ServiceLineResponseServiceResponseSchema`](#servicelineresponseserviceresponseschema)                                                     | Single service line response      |
+| [`ServiceLineResponsePaginatedServiceResponseSchema`](#servicelineresponsepaginatedserviceresponseschema)                                   | Paginated service lines response  |
+| [`UserTerminalResponseV2PaginatedServiceResponseSchema`](#userterminalresponsev2paginatedserviceresponseschema)                             | Paginated user terminals response |
+| [`RouterResponseV2ServiceResponseSchema`](#routerresponsev2serviceresponseschema)                                                           | Router information response       |
+| [`RouterConfigResponseV2ServiceResponseSchema`](#routerconfigresponsev2serviceresponseschema)                                               | Router config response            |
+| [`RouterConfigResponseV2PaginatedServiceResponseSchema`](#routerconfigresponsev2paginatedserviceresponseschema)                             | Paginated router configs response |
 
 ---
 
@@ -117,9 +118,9 @@ Configuration object for initializing the API client.
 
 ```typescript
 interface StarlinkArgs {
-  ClientId: string;       // OAuth client ID
+  ClientId: string; // OAuth client ID
   AccountNumber: string; // Your Starlink account number
-  ClientSecret: string;  // OAuth client secret
+  ClientSecret: string; // OAuth client secret
 }
 ```
 
@@ -142,10 +143,10 @@ Filters for querying data usage.
 
 ```typescript
 interface QueryDataUsageRequest {
-  serviceLineNumbers?: string[];     // Filter by specific service lines
-  previousBillingCycles?: number;   // Number of previous cycles to retrieve
-  activeServiceLinesOnly: boolean;   // Only include active service lines
-  queryStartDate?: Date;            // Start date for the query
+  serviceLineNumbers?: string[]; // Filter by specific service lines
+  previousBillingCycles?: number; // Number of previous cycles to retrieve
+  activeServiceLinesOnly: boolean; // Only include active service lines
+  queryStartDate?: Date; // Start date for the query
 }
 ```
 
@@ -155,17 +156,17 @@ Request to create a new address.
 
 ```typescript
 interface AddressCreateRequest {
-  addressLines: string[];            // Street address lines
-  locality?: string;                 // City/town
-  administrativeArea?: string;        // State/province name
-  administrativeAreaCode: string;     // State/province code (required)
-  region?: string;                   // Region name
-  regionCode: string;                // Region code (required)
-  postalCode?: string;                // Postal/ZIP code
-  metadata?: string;                 // Optional metadata
-  formattedAddress: string;          // Formatted address string
-  latitude: number;                  // GPS latitude
-  longitude: number;                 // GPS longitude
+  addressLines: string[]; // Street address lines
+  locality?: string; // City/town
+  administrativeArea?: string; // State/province name
+  administrativeAreaCode: string; // State/province code (required)
+  region?: string; // Region name
+  regionCode: string; // Region code (required)
+  postalCode?: string; // Postal/ZIP code
+  metadata?: string; // Optional metadata
+  formattedAddress: string; // Formatted address string
+  latitude: number; // GPS latitude
+  longitude: number; // GPS longitude
 }
 ```
 
@@ -195,12 +196,12 @@ Request to create a new contact on the account.
 
 ```typescript
 interface CreateContactOnAccountRequest {
-  firstName: string;    // Contact's first name
-  lastName: string;     // Contact's last name
-  roles: string[];      // Roles to assign (e.g., ["admin", "viewer"])
-  email: string;        // Contact's email address
-  phoneNumber: string;  // Contact's phone number
-  locale: string;       // Locale (e.g., "en-US")
+  firstName: string; // Contact's first name
+  lastName: string; // Contact's last name
+  roles: string[]; // Roles to assign (e.g., ["admin", "viewer"])
+  email: string; // Contact's email address
+  phoneNumber: string; // Contact's phone number
+  locale: string; // Locale (e.g., "en-US")
 }
 ```
 
@@ -210,8 +211,8 @@ Request to update an existing contact.
 
 ```typescript
 interface UpdateContactOnAccountRequest {
-  roles?: string[];      // Updated roles
-  phoneNumber?: string;  // Updated phone number
+  roles?: string[]; // Updated roles
+  phoneNumber?: string; // Updated phone number
 }
 ```
 
@@ -221,11 +222,11 @@ Request to create a managed customer account (requires provider account).
 
 ```typescript
 interface CreateManagedCustomerRequest {
-  firstName: string;     // Customer's first name
-  lastName: string;      // Customer's last name
-  email: string;         // Customer's email
-  phone: string;         // Customer's phone
-  locale: string;        // Locale
+  firstName: string; // Customer's first name
+  lastName: string; // Customer's last name
+  email: string; // Customer's email
+  phone: string; // Customer's phone
+  locale: string; // Locale
   businessName?: string; // Optional business name
 }
 ```
@@ -236,8 +237,8 @@ Request to create or update a router configuration.
 
 ```typescript
 interface RouterConfigRequest {
-  nickname?: string;         // Friendly name for the config
-  routerConfigJson: string;  // JSON configuration string
+  nickname?: string; // Friendly name for the config
+  routerConfigJson: string; // JSON configuration string
 }
 ```
 
@@ -247,8 +248,8 @@ Request to assign a configuration to routers.
 
 ```typescript
 interface AssignRoutersConfigRequest {
-  configId?: string;      // Config ID to assign (empty to unassign)
-  routerIds: string[];   // List of router IDs to assign to
+  configId?: string; // Config ID to assign (empty to unassign)
+  routerIds: string[]; // List of router IDs to assign to
 }
 ```
 
@@ -258,8 +259,8 @@ Request to create a TLS configuration.
 
 ```typescript
 interface TlsConfigCreateRequest {
-  certificateBase64Pem: string;  // Base64-encoded PEM certificate
-  keyBase64Pem: string;          // Base64-encoded PEM key
+  certificateBase64Pem: string; // Base64-encoded PEM certificate
+  keyBase64Pem: string; // Base64-encoded PEM key
 }
 ```
 
@@ -269,7 +270,7 @@ Request to delete a TLS configuration.
 
 ```typescript
 interface DeleteTlsConfigRequest {
-  certificateBase64Pem: string;  // Base64-encoded PEM certificate to delete
+  certificateBase64Pem: string; // Base64-encoded PEM certificate to delete
 }
 ```
 
@@ -279,8 +280,8 @@ Request to create a new service line.
 
 ```typescript
 interface ServiceLineCreateRequest {
-  addressReferenceId: string;      // Address ID to associate
-  productReferenceId: string;      // Product ID for the service
+  addressReferenceId: string; // Address ID to associate
+  productReferenceId: string; // Product ID for the service
   dataBlockProducts?: RecurringDataBlocksRequest; // Optional data blocks
 }
 ```
@@ -291,7 +292,7 @@ Request to update a service line's nickname.
 
 ```typescript
 interface ServiceLineUpdateNicknameRequest {
-  nickname: string;  // New nickname for the service line
+  nickname: string; // New nickname for the service line
 }
 ```
 
@@ -301,10 +302,10 @@ Request to update a service line's product.
 
 ```typescript
 interface UpdateServiceLineProductRequest {
-  productReferenceId: string;           // New product ID
+  productReferenceId: string; // New product ID
   recurringDataBlocks?: AddDataBlockRequest[]; // Optional recurring data blocks
-  existingDataPoolId?: string;           // Existing data pool to use
-  delayUpdate?: boolean;                 // Delay the update
+  existingDataPoolId?: string; // Existing data pool to use
+  delayUpdate?: boolean; // Delay the update
 }
 ```
 
@@ -314,7 +315,7 @@ Request to set public IP on a service line.
 
 ```typescript
 interface ServiceLineSetPublicIpRequest {
-  publicIp: boolean;  // Enable or disable public IP
+  publicIp: boolean; // Enable or disable public IP
 }
 ```
 
@@ -325,7 +326,7 @@ Request for recurring data blocks configuration.
 ```typescript
 interface RecurringDataBlocksRequest {
   recurringDataBlocks?: AddDataBlockRequest[]; // Data blocks to add
-  existingDataPoolId?: string;                 // Existing data pool ID
+  existingDataPoolId?: string; // Existing data pool ID
 }
 ```
 
@@ -335,8 +336,8 @@ Request to add a data block.
 
 ```typescript
 interface AddDataBlockRequest {
-  productId: string;  // Product ID for the data block
-  count: number;      // Number of blocks to add
+  productId: string; // Product ID for the data block
+  count: number; // Number of blocks to add
 }
 ```
 
@@ -355,13 +356,15 @@ static init(configurations: StarlinkArgs | StarlinkArgs[]): Starlink
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
+
+| Parameter        | Type                             | Description                               |
+| ---------------- | -------------------------------- | ----------------------------------------- |
 | `configurations` | `StarlinkArgs \| StarlinkArgs[]` | Single account config or array of configs |
 
 **Returns:** `Starlink` - The singleton instance
 
 **Example:**
+
 ```typescript
 // Single account
 const starlink = Starlink.init({
@@ -392,6 +395,7 @@ static getInstance(): Starlink
 **Throws:** `Error` if not initialized
 
 **Example:**
+
 ```typescript
 const client = Starlink.getInstance();
 ```
@@ -409,13 +413,15 @@ async getAccount(accountNumber: string): Promise<AccountResponseV2ServiceRespons
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
+
+| Parameter       | Type     | Description        |
+| --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
 
 **Returns:** `AccountResponseV2ServiceResponseSchema` - Account details including account number, region, and active suspensions
 
 **Example:**
+
 ```typescript
 const account = await client.getAccount("ACC-1234567-89012-34");
 console.log(account.content.accountNumber);
@@ -434,14 +440,16 @@ async getProducts(accountNumber: string, page: number = 0): Promise<Subscription
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `page` | `number` | `0` | Page index |
+
+| Parameter       | Type     | Default | Description        |
+| --------------- | -------- | ------- | ------------------ |
+| `accountNumber` | `string` | -       | The account number |
+| `page`          | `number` | `0`     | Page index         |
 
 **Returns:** `SubscriptionProductResponsePaginatedServiceResponseSchema` - Paginated list of available products
 
 **Example:**
+
 ```typescript
 const products = await client.getProducts("ACC-1234567-89012-34");
 for (const product of products.content.results) {
@@ -467,16 +475,18 @@ async DataUsageQuery(
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `page` | `number` | `0` | Page index |
-| `limit` | `number` | `50` | Results per page (max 250) |
-| `queryDataUsageRequest` | `QueryDataUsageRequest` | `{ activeServiceLinesOnly: true }` | Query filters |
+
+| Parameter               | Type                    | Default                            | Description                |
+| ----------------------- | ----------------------- | ---------------------------------- | -------------------------- |
+| `accountNumber`         | `string`                | -                                  | The account number         |
+| `page`                  | `number`                | `0`                                | Page index                 |
+| `limit`                 | `number`                | `50`                               | Results per page (max 250) |
+| `queryDataUsageRequest` | `QueryDataUsageRequest` | `{ activeServiceLinesOnly: true }` | Query filters              |
 
 **Returns:** `ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema` - Data usage per billing cycle
 
 **Example:**
+
 ```typescript
 const usage = await client.DataUsageQuery("ACC-1234567-89012-34", 0, 50, {
   activeServiceLinesOnly: true,
@@ -510,16 +520,18 @@ async getAddresses(
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `addressIds` | `string[]` | - | Filter by specific address IDs |
-| `metadata` | `string` | - | Filter by metadata |
-| `page` | `number` | `0` | Page index |
+
+| Parameter       | Type       | Default | Description                    |
+| --------------- | ---------- | ------- | ------------------------------ |
+| `accountNumber` | `string`   | -       | The account number             |
+| `addressIds`    | `string[]` | -       | Filter by specific address IDs |
+| `metadata`      | `string`   | -       | Filter by metadata             |
+| `page`          | `number`   | `0`     | Page index                     |
 
 **Returns:** `AddressResponsePaginatedServiceResponseSchema` - Paginated list of addresses
 
 **Example:**
+
 ```typescript
 const addresses = await client.getAddresses("ACC-1234567-89012-34");
 for (const addr of addresses.content.results) {
@@ -541,14 +553,16 @@ async createAddress(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `address` | `AddressCreateRequest` | The address details |
+
+| Parameter       | Type                   | Description         |
+| --------------- | ---------------------- | ------------------- |
+| `accountNumber` | `string`               | The account number  |
+| `address`       | `AddressCreateRequest` | The address details |
 
 **Returns:** `AddressResponseServiceResponseSchema` - Created address
 
 **Example:**
+
 ```typescript
 const newAddress = await client.createAddress("ACC-1234567-89012-34", {
   addressLines: ["123 Main St", "Suite 100"],
@@ -579,18 +593,20 @@ async getAddress(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
+
+| Parameter            | Type     | Description              |
+| -------------------- | -------- | ------------------------ |
+| `accountNumber`      | `string` | The account number       |
 | `addressReferenceId` | `string` | The address reference ID |
 
 **Returns:** `AddressResponseServiceResponseSchema` - Address details
 
 **Example:**
+
 ```typescript
 const address = await client.getAddress(
   "ACC-1234567-89012-34",
-  "55ec6574-10d8-bd9c-1951-d4184f4ae467"
+  "55ec6574-10d8-bd9c-1951-d4184f4ae467",
 );
 ```
 
@@ -609,15 +625,17 @@ async updateAddress(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `addressReferenceId` | `string` | The address reference ID |
-| `address` | `AddressUpdateRequest` | Updated address details |
+
+| Parameter            | Type                   | Description              |
+| -------------------- | ---------------------- | ------------------------ |
+| `accountNumber`      | `string`               | The account number       |
+| `addressReferenceId` | `string`               | The address reference ID |
+| `address`            | `AddressUpdateRequest` | Updated address details  |
 
 **Returns:** `AddressResponseServiceResponseSchema` - Updated address
 
 **Example:**
+
 ```typescript
 const updated = await client.updateAddress(
   "ACC-1234567-89012-34",
@@ -632,7 +650,7 @@ const updated = await client.updateAddress(
     formattedAddress: "456 New St, Los Angeles, CA",
     latitude: 34.0522,
     longitude: -118.2437,
-  }
+  },
 );
 ```
 
@@ -649,14 +667,16 @@ async getContacts(accountNumber: string, page: number = 0): Promise<UserResponse
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `page` | `number` | `0` | Page index |
+
+| Parameter       | Type     | Default | Description        |
+| --------------- | -------- | ------- | ------------------ |
+| `accountNumber` | `string` | -       | The account number |
+| `page`          | `number` | `0`     | Page index         |
 
 **Returns:** `UserResponsePaginatedServiceResponseSchema` - Paginated list of contacts
 
 **Example:**
+
 ```typescript
 const contacts = await client.getContacts("ACC-1234567-89012-34");
 for (const contact of contacts.content.results) {
@@ -678,14 +698,16 @@ async createContact(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `contact` | `CreateContactOnAccountRequest` | Contact details |
+
+| Parameter       | Type                            | Description        |
+| --------------- | ------------------------------- | ------------------ |
+| `accountNumber` | `string`                        | The account number |
+| `contact`       | `CreateContactOnAccountRequest` | Contact details    |
 
 **Returns:** `UserResponseServiceResponseSchema` - Created contact
 
 **Example:**
+
 ```typescript
 const contact = await client.createContact("ACC-1234567-89012-34", {
   firstName: "John",
@@ -712,20 +734,22 @@ async updateContact(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `subjectId` | `string` | Contact's subject ID |
-| `contact` | `UpdateContactOnAccountRequest` | Updated details |
+
+| Parameter       | Type                            | Description          |
+| --------------- | ------------------------------- | -------------------- |
+| `accountNumber` | `string`                        | The account number   |
+| `subjectId`     | `string`                        | Contact's subject ID |
+| `contact`       | `UpdateContactOnAccountRequest` | Updated details      |
 
 **Returns:** `UserResponseServiceResponseSchema` - Updated contact
 
 **Example:**
+
 ```typescript
 const updated = await client.updateContact(
   "ACC-1234567-89012-34",
   "user-subject-id-123",
-  { roles: ["admin", "billing"] }
+  { roles: ["admin", "billing"] },
 );
 ```
 
@@ -740,14 +764,16 @@ async deleteContact(accountNumber: string, subjectId: string): Promise<ServiceRe
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `subjectId` | `string` | Contact's subject ID |
+
+| Parameter       | Type     | Description          |
+| --------------- | -------- | -------------------- |
+| `accountNumber` | `string` | The account number   |
+| `subjectId`     | `string` | Contact's subject ID |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.deleteContact("ACC-1234567-89012-34", "user-subject-id-123");
 ```
@@ -768,14 +794,16 @@ async createManagedCustomer(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | Provider account number |
-| `customer` | `CreateManagedCustomerRequest` | Customer details |
+
+| Parameter       | Type                           | Description             |
+| --------------- | ------------------------------ | ----------------------- |
+| `accountNumber` | `string`                       | Provider account number |
+| `customer`      | `CreateManagedCustomerRequest` | Customer details        |
 
 **Returns:** `CreateManagedCustomerResponseServiceResponseSchema` - Created customer credentials
 
 **Example:**
+
 ```typescript
 const customer = await client.createManagedCustomer("ACC-PROVIDER-123", {
   firstName: "Jane",
@@ -805,16 +833,21 @@ async getRouter(accountNumber: string, routerId: string): Promise<RouterResponse
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
+
+| Parameter       | Type     | Description        |
+| --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
-| `routerId` | `string` | Router ID |
+| `routerId`      | `string` | Router ID          |
 
 **Returns:** `RouterResponseV2ServiceResponseSchema` - Router details
 
 **Example:**
+
 ```typescript
-const router = await client.getRouter("ACC-1234567-89012-34", "010000000000000000012345");
+const router = await client.getRouter(
+  "ACC-1234567-89012-34",
+  "010000000000000000012345",
+);
 console.log(`Hardware: ${router.content.hardwareVersion}`);
 console.log(`Config: ${router.content.configId}`);
 ```
@@ -830,14 +863,16 @@ async rebootRouter(accountNumber: string, routerId: string): Promise<ServiceResp
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `routerId` | `string` | Router ID to reboot |
+
+| Parameter       | Type     | Description         |
+| --------------- | -------- | ------------------- |
+| `accountNumber` | `string` | The account number  |
+| `routerId`      | `string` | Router ID to reboot |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.rebootRouter("ACC-1234567-89012-34", "010000000000000000012345");
 ```
@@ -858,18 +893,24 @@ async getSandboxClients(
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `sandboxId` | `number` | - | Filter by sandbox ID |
-| `expiryAfter` | `string` | - | ISO date-time string |
-| `page` | `number` | `0` | Page index |
+
+| Parameter       | Type     | Default | Description          |
+| --------------- | -------- | ------- | -------------------- |
+| `accountNumber` | `string` | -       | The account number   |
+| `sandboxId`     | `number` | -       | Filter by sandbox ID |
+| `expiryAfter`   | `string` | -       | ISO date-time string |
+| `page`          | `number` | `0`     | Page index           |
 
 **Returns:** `SandboxClientResponsePaginatedServiceResponseSchema` - Paginated sandbox clients
 
 **Example:**
+
 ```typescript
-const clients = await client.getSandboxClients("ACC-1234567-89012-34", undefined, "2024-01-01T00:00:00Z");
+const clients = await client.getSandboxClients(
+  "ACC-1234567-89012-34",
+  undefined,
+  "2024-01-01T00:00:00Z",
+);
 ```
 
 ---
@@ -886,14 +927,16 @@ async batchUpdateSandboxClients(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `requests` | `UpdateBatchSandboxClientRequest[]` | Update requests |
+
+| Parameter       | Type                                | Description        |
+| --------------- | ----------------------------------- | ------------------ |
+| `accountNumber` | `string`                            | The account number |
+| `requests`      | `UpdateBatchSandboxClientRequest[]` | Update requests    |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.batchUpdateSandboxClients("ACC-1234567-89012-34", [
   { clientId: "client-1", sandboxId: 123, expiry: "2024-12-31T23:59:59Z" },
@@ -915,14 +958,16 @@ async sendSandboxHeartbeat(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `request` | `SandboxHeartbeatRequest` | `{ healthy: boolean }` |
+
+| Parameter       | Type                      | Description            |
+| --------------- | ------------------------- | ---------------------- |
+| `accountNumber` | `string`                  | The account number     |
+| `request`       | `SandboxHeartbeatRequest` | `{ healthy: boolean }` |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.sendSandboxHeartbeat("ACC-1234567-89012-34", { healthy: true });
 ```
@@ -940,14 +985,16 @@ async getRouterConfigs(accountNumber: string, page: number = 0): Promise<RouterC
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `page` | `number` | `0` | Page index |
+
+| Parameter       | Type     | Default | Description        |
+| --------------- | -------- | ------- | ------------------ |
+| `accountNumber` | `string` | -       | The account number |
+| `page`          | `number` | `0`     | Page index         |
 
 **Returns:** `RouterConfigResponseV2PaginatedServiceResponseSchema` - Paginated router configs
 
 **Example:**
+
 ```typescript
 const configs = await client.getRouterConfigs("ACC-1234567-89012-34");
 for (const config of configs.content.results) {
@@ -969,14 +1016,16 @@ async createRouterConfig(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `config` | `RouterConfigRequest` | Configuration details |
+
+| Parameter       | Type                  | Description           |
+| --------------- | --------------------- | --------------------- |
+| `accountNumber` | `string`              | The account number    |
+| `config`        | `RouterConfigRequest` | Configuration details |
 
 **Returns:** `RouterConfigResponseV2ServiceResponseSchema` - Created config
 
 **Example:**
+
 ```typescript
 const config = await client.createRouterConfig("ACC-1234567-89012-34", {
   nickname: "Production Config",
@@ -998,16 +1047,21 @@ async getRouterConfig(accountNumber: string, configId: string): Promise<RouterCo
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
+
+| Parameter       | Type     | Description        |
+| --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
-| `configId` | `string` | Configuration ID |
+| `configId`      | `string` | Configuration ID   |
 
 **Returns:** `RouterConfigResponseV2ServiceResponseSchema` - Config details
 
 **Example:**
+
 ```typescript
-const config = await client.getRouterConfig("ACC-1234567-89012-34", "DVC_CFG-12341234");
+const config = await client.getRouterConfig(
+  "ACC-1234567-89012-34",
+  "DVC_CFG-12341234",
+);
 ```
 
 ---
@@ -1025,20 +1079,22 @@ async updateRouterConfig(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `configId` | `string` | Configuration ID |
-| `config` | `RouterConfigRequest` | Updated config |
+
+| Parameter       | Type                  | Description        |
+| --------------- | --------------------- | ------------------ |
+| `accountNumber` | `string`              | The account number |
+| `configId`      | `string`              | Configuration ID   |
+| `config`        | `RouterConfigRequest` | Updated config     |
 
 **Returns:** `RouterConfigResponseV2ServiceResponseSchema` - Updated config
 
 **Example:**
+
 ```typescript
 const updated = await client.updateRouterConfig(
   "ACC-1234567-89012-34",
   "DVC_CFG-12341234",
-  { nickname: "Updated Config", routerConfigJson: "{}" }
+  { nickname: "Updated Config", routerConfigJson: "{}" },
 );
 ```
 
@@ -1056,14 +1112,16 @@ async assignRoutersConfig(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `request` | `AssignRoutersConfigRequest` | Assignment request |
+
+| Parameter       | Type                         | Description        |
+| --------------- | ---------------------------- | ------------------ |
+| `accountNumber` | `string`                     | The account number |
+| `request`       | `AssignRoutersConfigRequest` | Assignment request |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.assignRoutersConfig("ACC-1234567-89012-34", {
   configId: "DVC_CFG-12341234",
@@ -1082,15 +1140,19 @@ async getDefaultRouterConfig(accountNumber: string): Promise<DefaultRouterConfig
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
+
+| Parameter       | Type     | Description        |
+| --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
 
 **Returns:** `DefaultRouterConfigResponseServiceResponseSchema` - Default config ID
 
 **Example:**
+
 ```typescript
-const defaultConfig = await client.getDefaultRouterConfig("ACC-1234567-89012-34");
+const defaultConfig = await client.getDefaultRouterConfig(
+  "ACC-1234567-89012-34",
+);
 console.log(`Default Config: ${defaultConfig.content.configId}`);
 ```
 
@@ -1108,16 +1170,20 @@ async setDefaultRouterConfig(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `request` | `UpdateDefaultConfigRequest` | `{ configId: string }` |
+
+| Parameter       | Type                         | Description            |
+| --------------- | ---------------------------- | ---------------------- |
+| `accountNumber` | `string`                     | The account number     |
+| `request`       | `UpdateDefaultConfigRequest` | `{ configId: string }` |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
-await client.setDefaultRouterConfig("ACC-1234567-89012-34", { configId: "DVC_CFG-NEW" });
+await client.setDefaultRouterConfig("ACC-1234567-89012-34", {
+  configId: "DVC_CFG-NEW",
+});
 ```
 
 ---
@@ -1131,14 +1197,16 @@ async getTlsConfigs(accountNumber: string, page: number = 0): Promise<DefaultRou
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `page` | `number` | `0` | Page index |
+
+| Parameter       | Type     | Default | Description        |
+| --------------- | -------- | ------- | ------------------ |
+| `accountNumber` | `string` | -       | The account number |
+| `page`          | `number` | `0`     | Page index         |
 
 **Returns:** `DefaultRouterConfigResponseServiceResponseSchema` - TLS config list
 
 **Example:**
+
 ```typescript
 const tlsConfigs = await client.getTlsConfigs("ACC-1234567-89012-34");
 ```
@@ -1157,14 +1225,16 @@ async createTlsConfig(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `request` | `TlsConfigCreateRequest` | Certificate and key |
+
+| Parameter       | Type                     | Description         |
+| --------------- | ------------------------ | ------------------- |
+| `accountNumber` | `string`                 | The account number  |
+| `request`       | `TlsConfigCreateRequest` | Certificate and key |
 
 **Returns:** `DefaultRouterConfigResponseServiceResponseSchema` - Created config
 
 **Example:**
+
 ```typescript
 import fs from "fs";
 
@@ -1191,14 +1261,16 @@ async deleteTlsConfig(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `request` | `DeleteTlsConfigRequest` | Certificate to delete |
+
+| Parameter       | Type                     | Description           |
+| --------------- | ------------------------ | --------------------- |
+| `accountNumber` | `string`                 | The account number    |
+| `request`       | `DeleteTlsConfigRequest` | Certificate to delete |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.deleteTlsConfig("ACC-1234567-89012-34", {
   certificateBase64Pem: "base64-encoded-cert",
@@ -1220,21 +1292,23 @@ async uploadRouterLocalContent(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
+
+| Parameter       | Type     | Description        |
+| --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
-| `fileContent` | `string` | HTML file content |
-| `fileName` | `string` | File name |
+| `fileContent`   | `string` | HTML file content  |
+| `fileName`      | `string` | File name          |
 
 **Returns:** `AddRouterLocalContentResponseV2ServiceResponseSchema` - Upload result
 
 **Example:**
+
 ```typescript
 const htmlContent = `<html><body><h1>Welcome</h1></body></html>`;
 const uploaded = await client.uploadRouterLocalContent(
   "ACC-1234567-89012-34",
   htmlContent,
-  "welcome.html"
+  "welcome.html",
 );
 console.log(`File ID: ${uploaded.content.fileContentId}`);
 ```
@@ -1250,13 +1324,15 @@ async getRouterLocalContentFiles(accountNumber: string): Promise<RouterLocalCont
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
+
+| Parameter       | Type     | Description        |
+| --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
 
 **Returns:** `RouterLocalContentResponseListServiceResponseSchema` - List of files
 
 **Example:**
+
 ```typescript
 const files = await client.getRouterLocalContentFiles("ACC-1234567-89012-34");
 for (const file of files.content) {
@@ -1284,18 +1360,20 @@ async getServiceLines(
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `addressReferenceId` | `string` | - | Filter by address |
-| `searchString` | `string` | - | Search filter |
-| `dataPoolId` | `string` | - | Filter by data pool |
-| `page` | `number` | `0` | Page index |
-| `orderByCreatedDateDescending` | `boolean` | `true` | Sort order |
+
+| Parameter                      | Type      | Default | Description         |
+| ------------------------------ | --------- | ------- | ------------------- |
+| `accountNumber`                | `string`  | -       | The account number  |
+| `addressReferenceId`           | `string`  | -       | Filter by address   |
+| `searchString`                 | `string`  | -       | Search filter       |
+| `dataPoolId`                   | `string`  | -       | Filter by data pool |
+| `page`                         | `number`  | `0`     | Page index          |
+| `orderByCreatedDateDescending` | `boolean` | `true`  | Sort order          |
 
 **Returns:** `ServiceLineResponsePaginatedServiceResponseSchema` - Paginated service lines
 
 **Example:**
+
 ```typescript
 const lines = await client.getServiceLines("ACC-1234567-89012-34");
 for (const line of lines.content.results) {
@@ -1318,14 +1396,16 @@ async createServiceLine(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `request` | `ServiceLineCreateRequest` | Service line details |
+
+| Parameter       | Type                       | Description          |
+| --------------- | -------------------------- | -------------------- |
+| `accountNumber` | `string`                   | The account number   |
+| `request`       | `ServiceLineCreateRequest` | Service line details |
 
 **Returns:** `ServiceLineResponseServiceResponseSchema` - Created service line
 
 **Example:**
+
 ```typescript
 const line = await client.createServiceLine("ACC-1234567-89012-34", {
   addressReferenceId: "addr-123",
@@ -1347,16 +1427,21 @@ async getServiceLine(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
+
+| Parameter           | Type     | Description         |
+| ------------------- | -------- | ------------------- |
+| `accountNumber`     | `string` | The account number  |
 | `serviceLineNumber` | `string` | Service line number |
 
 **Returns:** `ServiceLineResponseServiceResponseSchema` - Service line details
 
 **Example:**
+
 ```typescript
-const line = await client.getServiceLine("ACC-1234567-89012-34", "AST-511274-31364-54");
+const line = await client.getServiceLine(
+  "ACC-1234567-89012-34",
+  "AST-511274-31364-54",
+);
 ```
 
 ---
@@ -1375,22 +1460,24 @@ async deactivateServiceLine(
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `serviceLineNumber` | `string` | - | Service line to deactivate |
-| `reasonForCancellation` | `string` | - | Cancellation reason |
-| `endNow` | `boolean` | `false` | End immediately |
+
+| Parameter               | Type      | Default | Description                |
+| ----------------------- | --------- | ------- | -------------------------- |
+| `accountNumber`         | `string`  | -       | The account number         |
+| `serviceLineNumber`     | `string`  | -       | Service line to deactivate |
+| `reasonForCancellation` | `string`  | -       | Cancellation reason        |
+| `endNow`                | `boolean` | `false` | End immediately            |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.deactivateServiceLine(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
   "Customer requested",
-  true
+  true,
 );
 ```
 
@@ -1409,20 +1496,22 @@ async setServiceLineNickname(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `serviceLineNumber` | `string` | Service line number |
-| `request` | `ServiceLineUpdateNicknameRequest` | `{ nickname: string }` |
+
+| Parameter           | Type                               | Description            |
+| ------------------- | ---------------------------------- | ---------------------- |
+| `accountNumber`     | `string`                           | The account number     |
+| `serviceLineNumber` | `string`                           | Service line number    |
+| `request`           | `ServiceLineUpdateNicknameRequest` | `{ nickname: string }` |
 
 **Returns:** `ServiceLineResponseServiceResponseSchema` - Updated service line
 
 **Example:**
+
 ```typescript
 const updated = await client.setServiceLineNickname(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
-  { nickname: "Home Office" }
+  { nickname: "Home Office" },
 );
 ```
 
@@ -1441,20 +1530,22 @@ async updateServiceLineProduct(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `serviceLineNumber` | `string` | Service line number |
-| `request` | `UpdateServiceLineProductRequest` | Update details |
+
+| Parameter           | Type                              | Description         |
+| ------------------- | --------------------------------- | ------------------- |
+| `accountNumber`     | `string`                          | The account number  |
+| `serviceLineNumber` | `string`                          | Service line number |
+| `request`           | `UpdateServiceLineProductRequest` | Update details      |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.updateServiceLineProduct(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
-  { productReferenceId: "new-product-id", delayUpdate: true }
+  { productReferenceId: "new-product-id", delayUpdate: true },
 );
 ```
 
@@ -1473,20 +1564,22 @@ async setServiceLinePublicIp(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `serviceLineNumber` | `string` | Service line number |
-| `request` | `ServiceLineSetPublicIpRequest` | `{ publicIp: boolean }` |
+
+| Parameter           | Type                            | Description             |
+| ------------------- | ------------------------------- | ----------------------- |
+| `accountNumber`     | `string`                        | The account number      |
+| `serviceLineNumber` | `string`                        | Service line number     |
+| `request`           | `ServiceLineSetPublicIpRequest` | `{ publicIp: boolean }` |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.setServiceLinePublicIp(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
-  { publicIp: true }
+  { publicIp: true },
 );
 ```
 
@@ -1504,18 +1597,20 @@ async optInPriorityData(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
+
+| Parameter           | Type     | Description         |
+| ------------------- | -------- | ------------------- |
+| `accountNumber`     | `string` | The account number  |
 | `serviceLineNumber` | `string` | Service line number |
 
 **Returns:** `OptInResponseServiceResponseSchema` - Opt-in result
 
 **Example:**
+
 ```typescript
 const result = await client.optInPriorityData(
   "ACC-1234567-89012-34",
-  "AST-511274-31364-54"
+  "AST-511274-31364-54",
 );
 console.log(`Opt-in Product: ${result.content.productId}`);
 ```
@@ -1534,14 +1629,16 @@ async optOutPriorityData(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
+
+| Parameter           | Type     | Description         |
+| ------------------- | -------- | ------------------- |
+| `accountNumber`     | `string` | The account number  |
 | `serviceLineNumber` | `string` | Service line number |
 
 **Returns:** `OptInResponseServiceResponseSchema` - Opt-out result
 
 **Example:**
+
 ```typescript
 await client.optOutPriorityData("ACC-1234567-89012-34", "AST-511274-31364-54");
 ```
@@ -1561,20 +1658,22 @@ async addUserTerminalToServiceLine(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `serviceLineNumber` | `string` | Service line number |
-| `request` | `DeviceIdRequest` | `{ deviceId: string }` |
+
+| Parameter           | Type              | Description            |
+| ------------------- | ----------------- | ---------------------- |
+| `accountNumber`     | `string`          | The account number     |
+| `serviceLineNumber` | `string`          | Service line number    |
+| `request`           | `DeviceIdRequest` | `{ deviceId: string }` |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.addUserTerminalToServiceLine(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
-  { deviceId: "ut-123456" }
+  { deviceId: "ut-123456" },
 );
 ```
 
@@ -1593,20 +1692,22 @@ async removeUserTerminalFromServiceLine(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
+
+| Parameter           | Type     | Description         |
+| ------------------- | -------- | ------------------- |
+| `accountNumber`     | `string` | The account number  |
 | `serviceLineNumber` | `string` | Service line number |
-| `deviceId` | `string` | Device ID to remove |
+| `deviceId`          | `string` | Device ID to remove |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.removeUserTerminalFromServiceLine(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
-  "ut-123456"
+  "ut-123456",
 );
 ```
 
@@ -1625,22 +1726,24 @@ async setServiceLineRecurringDataBlocks(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `serviceLineNumber` | `string` | Service line number |
-| `request` | `RecurringDataBlocksRequest` | Data blocks config |
+
+| Parameter           | Type                         | Description         |
+| ------------------- | ---------------------------- | ------------------- |
+| `accountNumber`     | `string`                     | The account number  |
+| `serviceLineNumber` | `string`                     | Service line number |
+| `request`           | `RecurringDataBlocksRequest` | Data blocks config  |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.setServiceLineRecurringDataBlocks(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
   {
     recurringDataBlocks: [{ productId: "data-block-prod", count: 2 }],
-  }
+  },
 );
 ```
 
@@ -1659,20 +1762,22 @@ async addServiceLineTopUpData(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `serviceLineNumber` | `string` | Service line number |
-| `request` | `{ productId: string; count: number }` | Top-up details |
+
+| Parameter           | Type                                   | Description         |
+| ------------------- | -------------------------------------- | ------------------- |
+| `accountNumber`     | `string`                               | The account number  |
+| `serviceLineNumber` | `string`                               | Service line number |
+| `request`           | `{ productId: string; count: number }` | Top-up details      |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.addServiceLineTopUpData(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
-  { productId: "topup-50gb", count: 1 }
+  { productId: "topup-50gb", count: 1 },
 );
 ```
 
@@ -1690,21 +1795,25 @@ async getBillingPartialPeriods(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
+
+| Parameter           | Type     | Description         |
+| ------------------- | -------- | ------------------- |
+| `accountNumber`     | `string` | The account number  |
 | `serviceLineNumber` | `string` | Service line number |
 
 **Returns:** `PartialPeriodResponseListServiceResponseSchema` - Partial periods
 
 **Example:**
+
 ```typescript
 const periods = await client.getBillingPartialPeriods(
   "ACC-1234567-89012-34",
-  "AST-511274-31364-54"
+  "AST-511274-31364-54",
 );
 for (const period of periods.content) {
-  console.log(`${period.productReferenceId}: ${period.periodStart} to ${period.periodEnd}`);
+  console.log(
+    `${period.productReferenceId}: ${period.periodStart} to ${period.periodEnd}`,
+  );
 }
 ```
 
@@ -1728,22 +1837,26 @@ async getUserTerminals(
 ```
 
 **Arguments:**
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `accountNumber` | `string` | - | The account number |
-| `serviceLineNumbers` | `string[]` | - | Filter by service lines |
-| `userTerminalIds` | `string[]` | - | Filter by terminal IDs |
-| `hasServiceLine` | `boolean` | - | Filter by assignment |
-| `searchString` | `string` | - | Search filter |
-| `page` | `number` | `0` | Page index |
+
+| Parameter            | Type       | Default | Description             |
+| -------------------- | ---------- | ------- | ----------------------- |
+| `accountNumber`      | `string`   | -       | The account number      |
+| `serviceLineNumbers` | `string[]` | -       | Filter by service lines |
+| `userTerminalIds`    | `string[]` | -       | Filter by terminal IDs  |
+| `hasServiceLine`     | `boolean`  | -       | Filter by assignment    |
+| `searchString`       | `string`   | -       | Search filter           |
+| `page`               | `number`   | `0`     | Page index              |
 
 **Returns:** `UserTerminalResponseV2PaginatedServiceResponseSchema` - Paginated terminals
 
 **Example:**
+
 ```typescript
 const terminals = await client.getUserTerminals("ACC-1234567-89012-34");
 for (const terminal of terminals.content.results) {
-  console.log(`Kit: ${terminal.kitSerialNumber}, Dish: ${terminal.dishSerialNumber}`);
+  console.log(
+    `Kit: ${terminal.kitSerialNumber}, Dish: ${terminal.dishSerialNumber}`,
+  );
   console.log(`Service Line: ${terminal.serviceLineNumber}`);
 }
 ```
@@ -1762,16 +1875,20 @@ async addUserTerminal(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `request` | `DeviceIdRequest` | `{ deviceId: string }` |
+
+| Parameter       | Type              | Description            |
+| --------------- | ----------------- | ---------------------- |
+| `accountNumber` | `string`          | The account number     |
+| `request`       | `DeviceIdRequest` | `{ deviceId: string }` |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
-await client.addUserTerminal("ACC-1234567-89012-34", { deviceId: "ut-new-123" });
+await client.addUserTerminal("ACC-1234567-89012-34", {
+  deviceId: "ut-new-123",
+});
 ```
 
 ---
@@ -1785,14 +1902,16 @@ async removeUserTerminal(accountNumber: string, deviceId: string): Promise<Servi
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `deviceId` | `string` | Device ID to remove |
+
+| Parameter       | Type     | Description         |
+| --------------- | -------- | ------------------- |
+| `accountNumber` | `string` | The account number  |
+| `deviceId`      | `string` | Device ID to remove |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.removeUserTerminal("ACC-1234567-89012-34", "ut-old-456");
 ```
@@ -1808,14 +1927,16 @@ async rebootUserTerminal(accountNumber: string, deviceId: string): Promise<Servi
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `deviceId` | `string` | Device ID to reboot |
+
+| Parameter       | Type     | Description         |
+| --------------- | -------- | ------------------- |
+| `accountNumber` | `string` | The account number  |
+| `deviceId`      | `string` | Device ID to reboot |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.rebootUserTerminal("ACC-1234567-89012-34", "ut-123456");
 ```
@@ -1834,14 +1955,16 @@ async assignUserTerminalsConfig(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `request` | `AssignUserTerminalsConfigRequest` | Assignment request |
+
+| Parameter       | Type                               | Description        |
+| --------------- | ---------------------------------- | ------------------ |
+| `accountNumber` | `string`                           | The account number |
+| `request`       | `AssignUserTerminalsConfigRequest` | Assignment request |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
 await client.assignUserTerminalsConfig("ACC-1234567-89012-34", {
   configId: "DVC_CFG-12341234",
@@ -1862,13 +1985,15 @@ async getL2VpnCircuits(accountNumber: string): Promise<L2VpnCircuitResponseListS
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
+
+| Parameter       | Type     | Description        |
+| --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
 
 **Returns:** `L2VpnCircuitResponseListServiceResponseSchema` - Available circuits
 
 **Example:**
+
 ```typescript
 const circuits = await client.getL2VpnCircuits("ACC-1234567-89012-34");
 for (const circuit of circuits.content) {
@@ -1891,27 +2016,45 @@ async setUserTerminalL2VpnVlan(
 ```
 
 **Arguments:**
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `accountNumber` | `string` | The account number |
-| `deviceId` | `string` | User terminal device ID |
-| `circuits` | `L2VpnSetCircuitRequest[]` | Circuit configurations |
+
+| Parameter       | Type                       | Description             |
+| --------------- | -------------------------- | ----------------------- |
+| `accountNumber` | `string`                   | The account number      |
+| `deviceId`      | `string`                   | User terminal device ID |
+| `circuits`      | `L2VpnSetCircuitRequest[]` | Circuit configurations  |
 
 **Returns:** `ServiceResponseSchema` - Operation result
 
 **Example:**
+
 ```typescript
-await client.setUserTerminalL2VpnVlan(
-  "ACC-1234567-89012-34",
-  "ut-123456",
-  [
-    {
-      circuitId: "CKT-001",
-      customerVlans: [100, 101, 102],
-      serviceVlan: 200,
-    },
-  ]
-);
+await client.setUserTerminalL2VpnVlan("ACC-1234567-89012-34", "ut-123456", [
+  {
+    circuitId: "CKT-001",
+    customerVlans: [100, 101, 102],
+    serviceVlan: 200,
+  },
+]);
+```
+
+---
+
+### Telemetry
+
+This uses the Starlink Telemetry API to fetch network statics on all the kits associated with a particular account
+
+```typescript
+public async getTelemertry(accountNumber: string): Promose<any>
+```
+
+| Parameter       | Type     | Description        |
+| --------------- | -------- | ------------------ |
+| `accountNumber` | `string` | The account number |
+
+**Example:**
+
+```typescript
+const telemetry = await example.getTelemertry("ACC-5138402-14586-12");
 ```
 
 ---

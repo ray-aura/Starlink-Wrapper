@@ -1,6 +1,12 @@
+## 1.1.0
+
+### Features
+
+- Added the ability to use the Telemetry stream API under the function `getTelemetry`. The return value is currently untyped and in future versions this will be fixed as for now Starlink does not have a direct documentation for this structure of the response value.
+
 ## 1.0.5
 
-## Fixed
+### Fixed
 
 - Added nullable option to nickname field for the routerConfiguration schema
 - Started using Header Object instead of raw objects for requests

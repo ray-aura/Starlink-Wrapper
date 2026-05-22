@@ -843,4 +843,18 @@ export default class Starlink {
     );
     return ServiceResponseSchema.parse(response);
   }
+
+  public async getTelemertry(accountNumber: string) {
+    let url = "https://starlink.com/api/public/v2/telemetry/stream";
+
+    const response = await this.starlinkConnect.Request(
+      accountNumber,
+      url,
+      "POST",
+      {},
+      true,
+    );
+
+    return response;
+  }
 }

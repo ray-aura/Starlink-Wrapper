@@ -134,7 +134,7 @@ declare class Starlink_Connect {
     private fetchAccessToken;
     private getHeader;
     private IsAccessTokenExpired;
-    Request(accountNumber: string, url: string, method: "GET" | "POST" | "PUT" | "DELETE", body?: {}): Promise<any>;
+    Request(accountNumber: string, url: string, method: "GET" | "POST" | "PUT" | "DELETE", body?: {}, telemery?: boolean): Promise<any>;
 }
 
 declare class Starlink {
@@ -1308,6 +1308,7 @@ declare class Starlink {
         information: string[] | null;
         isValid: boolean;
     }>;
+    getTelemertry(accountNumber: string): Promise<any>;
 }
 
 declare const ValidationResultSchema: z.ZodObject<{

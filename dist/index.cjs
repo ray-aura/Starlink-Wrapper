@@ -127,7 +127,9 @@ var Starlink_Connect = class {
       }
     );
     if (!response.ok) {
-      throw new Error(`Failed to fetch access token: ${response.statusText}`);
+      throw new Error(
+        `Failed to fetch access token with code: ${response.status} and status message: ${response.statusText}`
+      );
     }
     let accessToken = await response.json();
     if (!accessToken) {
@@ -173,8 +175,8 @@ var Starlink_Connect = class {
     if (now >= 900) return true;
     return false;
   }
-  async Request(accountNumber, url, method, body = {}) {
-    let full_url = `${this.baseURL}${url}`;
+  async Request(accountNumber, url, method, body = {}, telemery = false) {
+    let full_url = telemery ? url : `${this.baseURL}${url}`;
     let headers = await this.getHeader(accountNumber);
     let options = {};
     if (method === "GET") {
@@ -1132,6 +1134,17 @@ var Starlink = class _Starlink {
       circuits
     );
     return ServiceResponseSchema.parse(response);
+  }
+  async getTelemertry(accountNumber) {
+    let url = "https://starlink.com/api/public/v2/telemetry/stream";
+    const response = await this.starlinkConnect.Request(
+      accountNumber,
+      url,
+      "POST",
+      {},
+      true
+    );
+    return response;
   }
 };
 // Annotate the CommonJS export names for ESM import in node:
