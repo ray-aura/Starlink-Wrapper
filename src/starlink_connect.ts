@@ -59,9 +59,7 @@ class Starlink_Connect {
   /*
    * Need to add better token use of token for the return type
    * Need to add check it see if token is still valid
-   *
-   *
-   * */
+   */
   private async getHeader(accountNumber: string) {
     let token = "";
 

@@ -1,13 +1,16 @@
 # Starlink Wrapper
 
-A typesafe TypeScript wrapper for the Starlink Enterprise API v2. Manage accounts, service lines, routers, user terminals, and more with full type safety and automatic OAuth token management.
+A typesafe TypeScript wrapper for the Starlink Enterprise API v2. Manage
+accounts, service lines, routers, user terminals, and more with full type safety
+and automatic OAuth token management.
 
 ## Features
 
 - **Type Safe** - Full TypeScript support with Zod validation
 - **OAuth 2.0** - Automatic token refresh and management
 - **Multi-Account** - Support for managing multiple Starlink accounts
-- **Comprehensive** - Covers accounts, service lines, routers, terminals, addresses, contacts, and more
+- **Comprehensive** - Covers accounts, service lines, routers, terminals,
+  addresses, contacts, and more
 
 ## Installation
 
@@ -76,24 +79,35 @@ const linesAtAddress = await starlink.getServiceLines("ACC-1234567-89012-34", {
 });
 
 // Get specific service line details
-const line = await starlink.getServiceLine("ACC-1234567-89012-34", "AST-511274-31364-54");
+const line = await starlink.getServiceLine(
+  "ACC-1234567-89012-34",
+  "AST-511274-31364-54",
+);
 
 // Update nickname
-await starlink.setServiceLineNickname("ACC-1234567-89012-34", "AST-511274-31364-54", {
-  nickname: "Home Office",
-});
+await starlink.setServiceLineNickname(
+  "ACC-1234567-89012-34",
+  "AST-511274-31364-54",
+  {
+    nickname: "Home Office",
+  },
+);
 
 // Enable/disable public IP
-await starlink.setServiceLinePublicIp("ACC-1234567-89012-34", "AST-511274-31364-54", {
-  publicIp: true,
-});
+await starlink.setServiceLinePublicIp(
+  "ACC-1234567-89012-34",
+  "AST-511274-31364-54",
+  {
+    publicIp: true,
+  },
+);
 
 // Deactivate a service line
 await starlink.deactivateServiceLine(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
   "Customer requested cancellation",
-  true // endNow
+  true, // endNow
 );
 ```
 
@@ -130,15 +144,19 @@ const terminals = await starlink.getUserTerminals("ACC-1234567-89012-34", {
 await starlink.rebootUserTerminal("ACC-1234567-89012-34", "ut-123456");
 
 // Add terminal to service line
-await starlink.addUserTerminalToServiceLine("ACC-1234567-89012-34", "AST-511274-31364-54", {
-  deviceId: "ut-new-123",
-});
+await starlink.addUserTerminalToServiceLine(
+  "ACC-1234567-89012-34",
+  "AST-511274-31364-54",
+  {
+    deviceId: "ut-new-123",
+  },
+);
 
 // Remove terminal from service line
 await starlink.removeUserTerminalFromServiceLine(
   "ACC-1234567-89012-34",
   "AST-511274-31364-54",
-  "ut-old-456"
+  "ut-old-456",
 );
 ```
 
@@ -242,22 +260,30 @@ await starlink.deleteContact("ACC-1234567-89012-34", "subject-123");
 
 ```typescript
 // Add one-time data top-up
-await starlink.addServiceLineTopUpData("ACC-1234567-89012-34", "AST-511274-31364-54", {
-  productId: "topup-50gb",
-  count: 1,
-});
+await starlink.addServiceLineTopUpData(
+  "ACC-1234567-89012-34",
+  "AST-511274-31364-54",
+  {
+    productId: "topup-50gb",
+    count: 1,
+  },
+);
 
 // Set recurring data blocks
-await starlink.setServiceLineRecurringDataBlocks("ACC-1234567-89012-34", "AST-511274-31364-54", {
-  recurringDataBlocks: [
-    { productId: "data-block-10gb", count: 2 },
-  ],
-});
+await starlink.setServiceLineRecurringDataBlocks(
+  "ACC-1234567-89012-34",
+  "AST-511274-31364-54",
+  {
+    recurringDataBlocks: [
+      { productId: "data-block-10gb", count: 2 },
+    ],
+  },
+);
 
 // Get billing partial periods
 const periods = await starlink.getBillingPartialPeriods(
   "ACC-1234567-89012-34",
-  "AST-511274-31364-54"
+  "AST-511274-31364-54",
 );
 ```
 
@@ -265,11 +291,17 @@ const periods = await starlink.getBillingPartialPeriods(
 
 ```typescript
 // Opt-in to priority data
-const optIn = await starlink.optInPriorityData("ACC-1234567-89012-34", "AST-511274-31364-54");
+const optIn = await starlink.optInPriorityData(
+  "ACC-1234567-89012-34",
+  "AST-511274-31364-54",
+);
 console.log(`Opt-in activated: ${optIn.content.activatedDate}`);
 
 // Opt-out of priority data
-await starlink.optOutPriorityData("ACC-1234567-89012-34", "AST-511274-31364-54");
+await starlink.optOutPriorityData(
+  "ACC-1234567-89012-34",
+  "AST-511274-31364-54",
+);
 ```
 
 ### L2 VPN Configuration
@@ -313,7 +345,7 @@ console.log(`Client ID: ${customer.content.serviceAccountClientId}`);
 const uploaded = await starlink.uploadRouterLocalContent(
   "ACC-1234567-89012-34",
   "<html><body><h1>Welcome</h1></body></html>",
-  "welcome.html"
+  "welcome.html",
 );
 
 // List uploaded content files

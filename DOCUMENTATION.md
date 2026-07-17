@@ -1,6 +1,8 @@
 # Starlink Enterprise API Wrapper Documentation
 
-A TypeScript wrapper for the Starlink Enterprise API v2. This library provides methods to manage Starlink accounts, service lines, routers, user terminals, and more.
+A TypeScript wrapper for the Starlink Enterprise API v2. This library provides
+methods to manage Starlink accounts, service lines, routers, user terminals, and
+more.
 
 ## Table of Contents
 
@@ -418,7 +420,8 @@ async getAccount(accountNumber: string): Promise<AccountResponseV2ServiceRespons
 | --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
 
-**Returns:** `AccountResponseV2ServiceResponseSchema` - Account details including account number, region, and active suspensions
+**Returns:** `AccountResponseV2ServiceResponseSchema` - Account details
+including account number, region, and active suspensions
 
 **Example:**
 
@@ -446,7 +449,8 @@ async getProducts(accountNumber: string, page: number = 0): Promise<Subscription
 | `accountNumber` | `string` | -       | The account number |
 | `page`          | `number` | `0`     | Page index         |
 
-**Returns:** `SubscriptionProductResponsePaginatedServiceResponseSchema` - Paginated list of available products
+**Returns:** `SubscriptionProductResponsePaginatedServiceResponseSchema` -
+Paginated list of available products
 
 **Example:**
 
@@ -483,7 +487,9 @@ async DataUsageQuery(
 | `limit`                 | `number`                | `50`                               | Results per page (max 250) |
 | `queryDataUsageRequest` | `QueryDataUsageRequest` | `{ activeServiceLinesOnly: true }` | Query filters              |
 
-**Returns:** `ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema` - Data usage per billing cycle
+**Returns:**
+`ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema` - Data
+usage per billing cycle
 
 **Example:**
 
@@ -528,7 +534,8 @@ async getAddresses(
 | `metadata`      | `string`   | -       | Filter by metadata             |
 | `page`          | `number`   | `0`     | Page index                     |
 
-**Returns:** `AddressResponsePaginatedServiceResponseSchema` - Paginated list of addresses
+**Returns:** `AddressResponsePaginatedServiceResponseSchema` - Paginated list of
+addresses
 
 **Example:**
 
@@ -673,7 +680,8 @@ async getContacts(accountNumber: string, page: number = 0): Promise<UserResponse
 | `accountNumber` | `string` | -       | The account number |
 | `page`          | `number` | `0`     | Page index         |
 
-**Returns:** `UserResponsePaginatedServiceResponseSchema` - Paginated list of contacts
+**Returns:** `UserResponsePaginatedServiceResponseSchema` - Paginated list of
+contacts
 
 **Example:**
 
@@ -800,7 +808,8 @@ async createManagedCustomer(
 | `accountNumber` | `string`                       | Provider account number |
 | `customer`      | `CreateManagedCustomerRequest` | Customer details        |
 
-**Returns:** `CreateManagedCustomerResponseServiceResponseSchema` - Created customer credentials
+**Returns:** `CreateManagedCustomerResponseServiceResponseSchema` - Created
+customer credentials
 
 **Example:**
 
@@ -901,7 +910,8 @@ async getSandboxClients(
 | `expiryAfter`   | `string` | -       | ISO date-time string |
 | `page`          | `number` | `0`     | Page index           |
 
-**Returns:** `SandboxClientResponsePaginatedServiceResponseSchema` - Paginated sandbox clients
+**Returns:** `SandboxClientResponsePaginatedServiceResponseSchema` - Paginated
+sandbox clients
 
 **Example:**
 
@@ -991,7 +1001,8 @@ async getRouterConfigs(accountNumber: string, page: number = 0): Promise<RouterC
 | `accountNumber` | `string` | -       | The account number |
 | `page`          | `number` | `0`     | Page index         |
 
-**Returns:** `RouterConfigResponseV2PaginatedServiceResponseSchema` - Paginated router configs
+**Returns:** `RouterConfigResponseV2PaginatedServiceResponseSchema` - Paginated
+router configs
 
 **Example:**
 
@@ -1145,7 +1156,8 @@ async getDefaultRouterConfig(accountNumber: string): Promise<DefaultRouterConfig
 | --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
 
-**Returns:** `DefaultRouterConfigResponseServiceResponseSchema` - Default config ID
+**Returns:** `DefaultRouterConfigResponseServiceResponseSchema` - Default config
+ID
 
 **Example:**
 
@@ -1203,7 +1215,8 @@ async getTlsConfigs(accountNumber: string, page: number = 0): Promise<DefaultRou
 | `accountNumber` | `string` | -       | The account number |
 | `page`          | `number` | `0`     | Page index         |
 
-**Returns:** `DefaultRouterConfigResponseServiceResponseSchema` - TLS config list
+**Returns:** `DefaultRouterConfigResponseServiceResponseSchema` - TLS config
+list
 
 **Example:**
 
@@ -1299,7 +1312,8 @@ async uploadRouterLocalContent(
 | `fileContent`   | `string` | HTML file content  |
 | `fileName`      | `string` | File name          |
 
-**Returns:** `AddRouterLocalContentResponseV2ServiceResponseSchema` - Upload result
+**Returns:** `AddRouterLocalContentResponseV2ServiceResponseSchema` - Upload
+result
 
 **Example:**
 
@@ -1329,7 +1343,8 @@ async getRouterLocalContentFiles(accountNumber: string): Promise<RouterLocalCont
 | --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
 
-**Returns:** `RouterLocalContentResponseListServiceResponseSchema` - List of files
+**Returns:** `RouterLocalContentResponseListServiceResponseSchema` - List of
+files
 
 **Example:**
 
@@ -1370,7 +1385,8 @@ async getServiceLines(
 | `page`                         | `number`  | `0`     | Page index          |
 | `orderByCreatedDateDescending` | `boolean` | `true`  | Sort order          |
 
-**Returns:** `ServiceLineResponsePaginatedServiceResponseSchema` - Paginated service lines
+**Returns:** `ServiceLineResponsePaginatedServiceResponseSchema` - Paginated
+service lines
 
 **Example:**
 
@@ -1847,7 +1863,8 @@ async getUserTerminals(
 | `searchString`       | `string`   | -       | Search filter           |
 | `page`               | `number`   | `0`     | Page index              |
 
-**Returns:** `UserTerminalResponseV2PaginatedServiceResponseSchema` - Paginated terminals
+**Returns:** `UserTerminalResponseV2PaginatedServiceResponseSchema` - Paginated
+terminals
 
 **Example:**
 
@@ -1990,7 +2007,8 @@ async getL2VpnCircuits(accountNumber: string): Promise<L2VpnCircuitResponseListS
 | --------------- | -------- | ------------------ |
 | `accountNumber` | `string` | The account number |
 
-**Returns:** `L2VpnCircuitResponseListServiceResponseSchema` - Available circuits
+**Returns:** `L2VpnCircuitResponseListServiceResponseSchema` - Available
+circuits
 
 **Example:**
 
@@ -2041,7 +2059,8 @@ await client.setUserTerminalL2VpnVlan("ACC-1234567-89012-34", "ut-123456", [
 
 ### Telemetry
 
-This uses the Starlink Telemetry API to fetch network statics on all the kits associated with a particular account
+This uses the Starlink Telemetry API to fetch network statics on all the kits
+associated with a particular account
 
 ```typescript
 public async getTelemertry(accountNumber: string): Promose<any>
@@ -2323,7 +2342,9 @@ const telemetry = await example.getTelemertry("ACC-5138402-14586-12");
 
 ## Error Handling
 
-All methods return Zod-validated responses. If the API returns an error response, the Zod validation will throw. Additionally, network errors and authentication failures will throw JavaScript errors.
+All methods return Zod-validated responses. If the API returns an error
+response, the Zod validation will throw. Additionally, network errors and
+authentication failures will throw JavaScript errors.
 
 ```typescript
 import Starlink from "starlink-wrapper";

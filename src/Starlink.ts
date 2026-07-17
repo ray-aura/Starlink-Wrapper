@@ -1,4 +1,4 @@
-import Starlink_Connect from "./starlink_connect.js";
+import Starlink_Connect from "./starlink_connect.ts";
 import type {
   AddressCreateRequest,
   AddressUpdateRequest,
@@ -22,11 +22,12 @@ import type {
   UpdateContactOnAccountRequest,
   UpdateDefaultConfigRequest,
   UpdateServiceLineProductRequest,
-} from "./Types.js";
+} from "./Types.ts";
 import {
   AccountResponseV2ServiceResponseSchema,
   AddressResponsePaginatedServiceResponseSchema,
   AddressResponseServiceResponseSchema,
+  AddRouterLocalContentResponseV2ServiceResponseSchema,
   CreateManagedCustomerResponseServiceResponseSchema,
   DefaultRouterConfigResponseServiceResponseSchema,
   L2VpnCircuitResponseListServiceResponseSchema,
@@ -35,7 +36,6 @@ import {
   RouterConfigResponseV2PaginatedServiceResponseSchema,
   RouterConfigResponseV2ServiceResponseSchema,
   RouterLocalContentResponseListServiceResponseSchema,
-  AddRouterLocalContentResponseV2ServiceResponseSchema,
   RouterResponseV2ServiceResponseSchema,
   SandboxClientResponsePaginatedServiceResponseSchema,
   ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema,
@@ -46,7 +46,7 @@ import {
   UserResponsePaginatedServiceResponseSchema,
   UserResponseServiceResponseSchema,
   UserTerminalResponseV2PaginatedServiceResponseSchema,
-} from "./StarlinkTypes/schemas.js";
+} from "./StarlinkTypes/schemas.ts";
 
 export default class Starlink {
   private static instance: Starlink;
@@ -101,9 +101,10 @@ export default class Starlink {
       "POST",
       queryDataUsageRequest,
     );
-    return ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema.parse(
-      response,
-    );
+    return ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema
+      .parse(
+        response,
+      );
   }
 
   public async getProducts(accountNumber: string, page: number = 0) {
@@ -722,7 +723,8 @@ export default class Starlink {
     accountNumber: string,
     serviceLineNumber: string,
   ) {
-    const url = `service-lines/${serviceLineNumber}/billing-cycles/partial-periods`;
+    const url =
+      `service-lines/${serviceLineNumber}/billing-cycles/partial-periods`;
 
     const response = await this.starlinkConnect.Request(
       accountNumber,
@@ -744,7 +746,7 @@ export default class Starlink {
     const params = new URLSearchParams({ page: `${page}` });
     if (serviceLineNumbers) {
       serviceLineNumbers.forEach((sl) =>
-        params.append("serviceLineNumbers", sl),
+        params.append("serviceLineNumbers", sl)
       );
     }
     if (userTerminalIds) {

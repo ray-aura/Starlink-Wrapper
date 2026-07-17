@@ -19,8 +19,8 @@ export const AccountResponseV2Schema = z.object({
   activeSuspensions: z.array(z.string()).nullable(),
 });
 
-export const AccountResponseV2ServiceResponseSchema =
-  ServiceResponseSchema.extend({
+export const AccountResponseV2ServiceResponseSchema = ServiceResponseSchema
+  .extend({
     content: AccountResponseV2Schema,
   });
 
@@ -39,8 +39,8 @@ export const AddressResponseSchema = z.object({
   longitude: z.number(),
 });
 
-export const AddressResponseServiceResponseSchema =
-  ServiceResponseSchema.extend({
+export const AddressResponseServiceResponseSchema = ServiceResponseSchema
+  .extend({
     content: AddressResponseSchema,
   });
 
@@ -75,8 +75,8 @@ export const UserResponsePaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const UserResponsePaginatedServiceResponseSchema =
-  ServiceResponseSchema.extend({
+export const UserResponsePaginatedServiceResponseSchema = ServiceResponseSchema
+  .extend({
     content: UserResponsePaginatedSchema,
   });
 
@@ -151,8 +151,8 @@ export const RouterResponseV2Schema = z.object({
   lastBonded: z.string().nullable(),
 });
 
-export const RouterResponseV2ServiceResponseSchema =
-  ServiceResponseSchema.extend({
+export const RouterResponseV2ServiceResponseSchema = ServiceResponseSchema
+  .extend({
     content: RouterResponseV2Schema,
   });
 
@@ -162,8 +162,8 @@ export const RouterConfigResponseV2Schema = z.object({
   routerConfigJson: z.string(),
 });
 
-export const RouterConfigResponseV2ServiceResponseSchema =
-  ServiceResponseSchema.extend({
+export const RouterConfigResponseV2ServiceResponseSchema = ServiceResponseSchema
+  .extend({
     content: RouterConfigResponseV2Schema,
   });
 
@@ -412,8 +412,8 @@ export const ServiceLineResponseSchema = z.object({
   dataBlocks: ServiceLineDataBlocksSummaryResponseSchema.nullable(),
 });
 
-export const ServiceLineResponseServiceResponseSchema =
-  ServiceResponseSchema.extend({
+export const ServiceLineResponseServiceResponseSchema = ServiceResponseSchema
+  .extend({
     content: ServiceLineResponseSchema,
   });
 
@@ -450,4 +450,13 @@ export const OptInResponseSchema = z.object({
 
 export const OptInResponseServiceResponseSchema = ServiceResponseSchema.extend({
   content: OptInResponseSchema,
+});
+
+export const telemetryResponseSchema = z.object({
+  data: z.object({
+    data: z.object({
+      values: z.array(z.array(z.any())),
+      columnNamesByDeviceType: z.record(z.string(), z.array(z.string())),
+    }),
+  }),
 });

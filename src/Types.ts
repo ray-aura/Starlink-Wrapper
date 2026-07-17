@@ -147,3 +147,21 @@ export interface RecurringDataBlocksRequest {
   recurringDataBlocks?: AddDataBlockRequest[];
   existingDataPoolId?: string;
 }
+
+export interface TelemetryResponse {
+  data: {
+    data: {
+      values: any[][];
+      columnNamesByDeviceType: {
+        [key: string]: string[];
+      };
+    };
+  };
+}
+
+export interface DeviceTelemetryData {
+  [key: string]: any;
+  DeviceType: "u" | "r";
+  DeviceId?: string;
+  DishId?: string;
+}
