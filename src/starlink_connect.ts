@@ -1,4 +1,4 @@
-import type { StarlinkArgs, StarlinkCredinitals } from "./Types.ts";
+import type { StarlinkArgs, StarlinkCredinitals } from "./Types.js";
 
 class Starlink_Connect {
   private baseURL: string = "https://web-api.starlink.com/enterprise/v2/";

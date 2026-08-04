@@ -1,4 +1,4 @@
-import Starlink_Connect from "./starlink_connect.ts";
+import Starlink_Connect from "./starlink_connect.js";
 import type {
   AddressCreateRequest,
   AddressUpdateRequest,
@@ -22,7 +22,7 @@ import type {
   UpdateContactOnAccountRequest,
   UpdateDefaultConfigRequest,
   UpdateServiceLineProductRequest,
-} from "./Types.ts";
+} from "./Types.js";
 import {
   AccountResponseV2ServiceResponseSchema,
   AddressResponsePaginatedServiceResponseSchema,
@@ -46,7 +46,7 @@ import {
   UserResponsePaginatedServiceResponseSchema,
   UserResponseServiceResponseSchema,
   UserTerminalResponseV2PaginatedServiceResponseSchema,
-} from "./StarlinkTypes/schemas.ts";
+} from "./StarlinkTypes/schemas.js";
 
 export default class Starlink {
   private static instance: Starlink;
@@ -101,10 +101,9 @@ export default class Starlink {
       "POST",
       queryDataUsageRequest,
     );
-    return ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema
-      .parse(
-        response,
-      );
+    return ServiceLineDataUsageForBillingCyclesPaginatedServiceResponseSchema.parse(
+      response,
+    );
   }
 
   public async getProducts(accountNumber: string, page: number = 0) {
@@ -723,8 +722,7 @@ export default class Starlink {
     accountNumber: string,
     serviceLineNumber: string,
   ) {
-    const url =
-      `service-lines/${serviceLineNumber}/billing-cycles/partial-periods`;
+    const url = `service-lines/${serviceLineNumber}/billing-cycles/partial-periods`;
 
     const response = await this.starlinkConnect.Request(
       accountNumber,
@@ -746,7 +744,7 @@ export default class Starlink {
     const params = new URLSearchParams({ page: `${page}` });
     if (serviceLineNumbers) {
       serviceLineNumbers.forEach((sl) =>
-        params.append("serviceLineNumbers", sl)
+        params.append("serviceLineNumbers", sl),
       );
     }
     if (userTerminalIds) {
@@ -846,14 +844,18 @@ export default class Starlink {
     return ServiceResponseSchema.parse(response);
   }
 
-  public async getTelemertry(accountNumber: string) {
+  public async getTelemertry(
+    accountNumber: string,
+    batchSize: number = 1000,
+    maxLingerMs: number = 15000,
+  ) {
     let url = "https://starlink.com/api/public/v2/telemetry/stream";
 
     const response = await this.starlinkConnect.Request(
       accountNumber,
       url,
       "POST",
-      {},
+      { batchSize, maxLingerMs },
       true,
     );
 
