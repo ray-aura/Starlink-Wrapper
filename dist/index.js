@@ -1051,13 +1051,24 @@ var Starlink = class _Starlink {
     );
     return ServiceResponseSchema.parse(response);
   }
-  async getTelemertry(accountNumber, batchSize = 1e3, maxLingerMs = 15e3) {
+  async getTelemetry(accountNumber, batchSize = 1e3, maxLingerMs = 15e3) {
     let url = "https://starlink.com/api/public/v2/telemetry/stream";
     const response = await this.starlinkConnect.Request(
       accountNumber,
       url,
       "POST",
       { batchSize, maxLingerMs },
+      true
+    );
+    return response;
+  }
+  async getTelemetryQuery(accountNumber, telemetryQuery) {
+    const url = "https://starlink.com/api/public/v2/telemetry/query";
+    const response = await this.starlinkConnect.Request(
+      accountNumber,
+      url,
+      "POST",
+      telemetryQuery,
       true
     );
     return response;

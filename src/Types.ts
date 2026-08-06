@@ -165,3 +165,10 @@ export interface DeviceTelemetryData {
   DeviceId?: string;
   DishId?: string;
 }
+
+export interface TelemetryQuery {
+  includeUserTerminals?: boolean;
+  userTerminalIds?: string[];
+  includeRouters?: boolean;
+  routerIds: string[];
+}

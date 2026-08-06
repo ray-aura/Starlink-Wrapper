@@ -22,6 +22,7 @@ import type {
   UpdateContactOnAccountRequest,
   UpdateDefaultConfigRequest,
   UpdateServiceLineProductRequest,
+  TelemetryQuery,
 } from "./Types.js";
 import {
   AccountResponseV2ServiceResponseSchema,
@@ -844,7 +845,7 @@ export default class Starlink {
     return ServiceResponseSchema.parse(response);
   }
 
-  public async getTelemertry(
+  public async getTelemetry(
     accountNumber: string,
     batchSize: number = 1000,
     maxLingerMs: number = 15000,
@@ -856,6 +857,22 @@ export default class Starlink {
       url,
       "POST",
       { batchSize, maxLingerMs },
+      true,
+    );
+
+    return response;
+  }
+
+  public async getTelemetryQuery(
+    accountNumber: string,
+    telemetryQuery: TelemetryQuery,
+  ) {
+    const url = "https://starlink.com/api/public/v2/telemetry/query";
+    const response = await this.starlinkConnect.Request(
+      accountNumber,
+      url,
+      "POST",
+      telemetryQuery,
       true,
     );
 

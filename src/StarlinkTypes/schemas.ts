@@ -19,8 +19,8 @@ export const AccountResponseV2Schema = z.object({
   activeSuspensions: z.array(z.string()).nullable(),
 });
 
-export const AccountResponseV2ServiceResponseSchema = ServiceResponseSchema
-  .extend({
+export const AccountResponseV2ServiceResponseSchema =
+  ServiceResponseSchema.extend({
     content: AccountResponseV2Schema,
   });
 
@@ -39,8 +39,8 @@ export const AddressResponseSchema = z.object({
   longitude: z.number(),
 });
 
-export const AddressResponseServiceResponseSchema = ServiceResponseSchema
-  .extend({
+export const AddressResponseServiceResponseSchema =
+  ServiceResponseSchema.extend({
     content: AddressResponseSchema,
   });
 
@@ -75,8 +75,8 @@ export const UserResponsePaginatedSchema = z.object({
   totalCount: z.number(),
 });
 
-export const UserResponsePaginatedServiceResponseSchema = ServiceResponseSchema
-  .extend({
+export const UserResponsePaginatedServiceResponseSchema =
+  ServiceResponseSchema.extend({
     content: UserResponsePaginatedSchema,
   });
 
@@ -151,8 +151,8 @@ export const RouterResponseV2Schema = z.object({
   lastBonded: z.string().nullable(),
 });
 
-export const RouterResponseV2ServiceResponseSchema = ServiceResponseSchema
-  .extend({
+export const RouterResponseV2ServiceResponseSchema =
+  ServiceResponseSchema.extend({
     content: RouterResponseV2Schema,
   });
 
@@ -162,8 +162,8 @@ export const RouterConfigResponseV2Schema = z.object({
   routerConfigJson: z.string(),
 });
 
-export const RouterConfigResponseV2ServiceResponseSchema = ServiceResponseSchema
-  .extend({
+export const RouterConfigResponseV2ServiceResponseSchema =
+  ServiceResponseSchema.extend({
     content: RouterConfigResponseV2Schema,
   });
 
@@ -412,8 +412,8 @@ export const ServiceLineResponseSchema = z.object({
   dataBlocks: ServiceLineDataBlocksSummaryResponseSchema.nullable(),
 });
 
-export const ServiceLineResponseServiceResponseSchema = ServiceResponseSchema
-  .extend({
+export const ServiceLineResponseServiceResponseSchema =
+  ServiceResponseSchema.extend({
     content: ServiceLineResponseSchema,
   });
 
@@ -452,6 +452,178 @@ export const OptInResponseServiceResponseSchema = ServiceResponseSchema.extend({
   content: OptInResponseSchema,
 });
 
+/*
+let TelemetryQuery = z.object({
+  userTerminals: z.object({}).nullable(),
+  routers: z.object({}).nullable(),
+});
+
+let TelemetryUserTerminal = z.object({
+  userTerminalId: z.string(),
+  timestamp: z.string(),
+  uptimeSeconds: z.
+Device uptime in seconds
+
+softwareVersion
+string | null
+Device software version
+
+downlinkThroughputMbps
+double | null
+Downlink throughput in megabits per second
+
+uplinkThroughputMbps
+double | null
+Uplink throughput in megabits per second
+
+popPingDropRateAvg
+float | null
+Drop rate of pings to Starlink PoP over previous 15s
+
+popPingLatencyMsAvg
+int32 | null
+Latency of pings to Starlink PoP over previous 15s
+
+obstructionPercentTime
+double | null
+Moving average percentage of time the user terminal has been obstructed
+
+signalQuality
+float | null
+Signal strength converted to 0-1 range, with high values indicating strong signal
+
+countryCode
+string | null
+The ISO 3166 country code the user terminal is located in, or XZ for international waters.
+
+inTerritorialWaters
+boolean | null
+Whether the user terminal is currently in territorial waters of the country.
+
+h3CellId
+string | null
+Hex string of H3 Cell Id at R5 resolution
+
+secondsUntilSoftwareUpdateRebootPossible
+int32 | null
+Seconds until terminal can schedule a reboot if software deferral is enabled. Value is null if unknown or software deferral is not enabled (default)
+
+alertSoftwareUpdateRebootPending
+boolean | null
+Terminal software update is pending, it will reboot at the next scheduled reboot time. Null if unknown
+
+alertDataOverageRateLimited
+boolean | null
+Terminal is rate limited because it is out of priority data. Null if unknown
+
+alertEthernetSlowLink10
+boolean | null
+Ethernet link speed is negotiated to 10 Mbps. Null if unknown
+
+alertEthernetSlowLink100
+boolean | null
+Ethernet link speed is negotiated to 100 Mbps. Null if unknown
+
+alertPsuOtpThrottling
+boolean | null
+Terminal power supply is signaling it is very hot and close to shutting down. Null if unknown
+
+alertPopChange
+boolean | null
+Terminal connected Point of Presence (PoP) has changed, which may cause short service disruption and IP change. Null if unknown
+
+alertActuatorMotorStuck
+boolean | null
+Terminal actuator motor is stuck. Null if unknown
+
+alertMastNotVertical
+boolean | null
+Terminal is not installed with the mast within 30 degrees of vertical. Null if unknown
+
+alertUnableToAlign
+boolean | null
+Terminal is unable to reach desired tilt direction. Null if unknown
+
+alertHighTimeObstruction
+boolean | null
+Terminal is detecting frequent obstructions in the field of view. Null if unknown
+
+alertDisabledNoActiveServiceLine
+boolean | null
+Terminal is disabled because it is not on an active service line. Null if unknown
+
+alertDisabledTooFarFromServiceAddress
+boolean | null
+Terminal is disabled because it it is too far from its service address. Null if unknown
+
+alertDisabledNoServiceInOcean
+boolean | null
+Terminal is disabled because it is in the ocean without a service line that supports maritime. Null if unknown
+
+alertDisabledBlockedCountry
+boolean | null
+Terminal is disabled because it is in a restricted service country. Null if unknown
+
+alertDisabledMovingTooFast
+boolean | null
+Terminal is disabled because it is moving too fast without an aviation plan. Null if unknown
+
+alertDisabledDataUsageExceededQuota
+boolean | null
+Terminal is disabled because it has exceeded the data usage quota. Null if unknown
+
+alertDisabledCellIsDisabled
+boolean | null
+Terminal is disabled because it is in a cell that will not get beams. Null if unknown
+
+alertDisabledRoamRestricted
+boolean | null
+Terminal is disabled because it has roamed for too long outside of its home country. Null if unknown
+
+alertDisabledUnknownLocation
+boolean | null
+Terminal is disabled because it cannot determine its location. Null if unknown
+
+alertDisabledAccountDisabled
+boolean | null
+Terminal is disabled because the account is disabled. Null if unknown
+
+alertDisabledUnsupportedSoftware
+boolean | null
+Terminal is disabled because the software version is not supported. Null if unknown
+
+ipAllocations
+object
+
+ipAllocations object
+userTerminalId
+string
+User terminal Id
+
+timestamp
+date-time
+Timestamp of IP allocation, which can differ from the rest of the user terminal telemetry data
+
+ipv4
+array of strings | null
+IPv4 addresses allocated
+
+ipv6Ue
+array of strings | null
+IPv6UE addresses allocated
+
+ipv6Cpe
+array of strings | null
+IPv6CPE addresses allocated
+})
+
+export const TelemetryQueryResponse = ServiceResponseSchema.extend({
+  content: z.object({
+
+  })
+})
+
+*/
 export const telemetryResponseSchema = z.object({
   data: z.object({
     data: z.object({
