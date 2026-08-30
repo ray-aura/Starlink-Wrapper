@@ -91,7 +91,7 @@ module.exports = __toCommonJS(index_exports);
 
 // src/starlink_connect.ts
 var Starlink_Connect = class {
-  baseURL = "https://web-api.starlink.com/enterprise/v2/";
+  baseURL = "https://starlink.com/api/public/v2/";
   // maps AccountNumber -> credentialsMap
   credentialsMap;
   constructor(configurations) {

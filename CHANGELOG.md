@@ -1,3 +1,9 @@
+## 1.1.3
+
+### Critical Fix
+
+- Changed the base URL from `https://web-api.starlink.com/enterprise/v2/` to `https://starlink.com/api/public/v2/`. The previous link just went down and we are not sure what exactly happened.
+
 ## 1.1.0
 
 ### Features

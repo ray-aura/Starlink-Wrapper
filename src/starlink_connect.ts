@@ -1,7 +1,7 @@
 import type { StarlinkArgs, StarlinkCredinitals } from "./Types.js";
 
 class Starlink_Connect {
-  private baseURL: string = "https://web-api.starlink.com/enterprise/v2/";
+  private baseURL: string = "https://starlink.com/api/public/v2/";
   // maps AccountNumber -> credentialsMap
   private credentialsMap: Map<string, StarlinkCredinitals>;
 
